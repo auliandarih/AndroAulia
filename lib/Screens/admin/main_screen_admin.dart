@@ -10,7 +10,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../constants.dart';
 
 class MainScreenAdmin extends StatefulWidget {
-  const MainScreenAdmin({Key? key}) : super(key: key);
+  final String login;
+  const MainScreenAdmin({Key? key, required this.login}) : super(key: key);
 
   @override
   _MainScreenAdminState createState() => _MainScreenAdminState();
@@ -26,22 +27,25 @@ class _MainScreenAdminState extends State<MainScreenAdmin> {
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           Icon(
-            FontAwesomeIcons.calendarCheck, size: 30,
+            FontAwesomeIcons.calendarCheck,
+            size: 30,
             color: Colors.white,
           ),
           Icon(
-            FontAwesomeIcons.clipboard, size: 30,
+            FontAwesomeIcons.clipboard,
+            size: 30,
             color: Colors.white,
           ),
           Icon(
-            FontAwesomeIcons.ellipsisH, size: 30,
+            FontAwesomeIcons.ellipsisH,
+            size: 30,
             color: Colors.white,
           )
         ],
         backgroundColor: bgColor,
         buttonBackgroundColor: kAppBar,
         color: kAppBar,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             selectedIndex = index;
           });

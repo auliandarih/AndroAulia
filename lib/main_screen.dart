@@ -7,7 +7,8 @@ import 'Screens/po/home/home_screen.dart';
 import 'Screens/po/profil/profil_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final String login;
+  const MainScreen({Key? key, required this.login}) : super(key: key);
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -23,22 +24,25 @@ class _MainScreenState extends State<MainScreen> {
       bottomNavigationBar: CurvedNavigationBar(
         items: [
           Icon(
-            FontAwesomeIcons.plus, size: 30,
+            FontAwesomeIcons.plus,
+            size: 30,
             color: Colors.white,
           ),
           Icon(
-            FontAwesomeIcons.clipboard, size: 30,
+            FontAwesomeIcons.clipboard,
+            size: 30,
             color: Colors.white,
           ),
           Icon(
-            Icons.person, size: 30,
+            Icons.person,
+            size: 30,
             color: Colors.white,
           )
         ],
         backgroundColor: bgColor,
         buttonBackgroundColor: kAppBar,
         color: kAppBar,
-        onTap: (index){
+        onTap: (index) {
           setState(() {
             selectedIndex = index;
           });

@@ -15,9 +15,9 @@ class HomeAdmin extends StatefulWidget {
 
 class _HomeAdminState extends State<HomeAdmin> {
   Future<List> tampilSemuaData() async {
-    final url     = Uri.parse(myUrl().tampil_event);
-    final respon  = await http.post(url);
-    final hasil   = jsonDecode(respon.body);
+    final url = Uri.parse(myUrl().tampil_event);
+    final respon = await http.post(url);
+    final hasil = jsonDecode(respon.body);
 
     return hasil;
   }
@@ -32,28 +32,27 @@ class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar("Daftar Event"),
-      body: RefreshIndicator(
-        child: FutureBuilder<List>(
-          future: tampilSemuaData(),
-          builder: (context, tempData) {
-            if(tempData.hasError) print(tempData.error);
-            return tempData.hasData == true
-                ? desainTampilan(tempData.requireData)
-                : Center(
-                    child: CircularProgressIndicator(),
-                  );
-          },
-        ),
-        onRefresh: refreshDataEvent,
-      )
-    );
+        appBar: buildAppBar("Daftar Event"),
+        body: RefreshIndicator(
+          child: FutureBuilder<List>(
+            future: tampilSemuaData(),
+            builder: (context, tempData) {
+              if (tempData.hasError) print(tempData.error);
+              return tempData.hasData == true
+                  ? desainTampilan(tempData.requireData)
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            },
+          ),
+          onRefresh: refreshDataEvent,
+        ));
   }
 
-  Widget desainTampilan(List dataHasil){
+  Widget desainTampilan(List dataHasil) {
     return ListView.builder(
         itemCount: dataHasil == null ? 0 : dataHasil.length,
-        itemBuilder: (context, urutan){
+        itemBuilder: (context, urutan) {
           return Padding(
             padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
             child: Card(
@@ -88,8 +87,7 @@ class _HomeAdminState extends State<HomeAdmin> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 
   Widget itemData(String label) {
@@ -109,5 +107,4 @@ class _HomeAdminState extends State<HomeAdmin> {
       ),
     );
   }
-
 }

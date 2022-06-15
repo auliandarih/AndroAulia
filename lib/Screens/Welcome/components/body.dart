@@ -51,21 +51,21 @@ class Body extends StatelessWidget {
                         );
                       },
                     ),
-                    RoundedButton(
-                      text: "Home Page",
-                      color: Colors.grey[500]!.withOpacity(0.5),
-                      textColor: Colors.white,
-                      press: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return HomeScreen();
-                            },
-                          ),
-                        );
-                      },
-                    ),
+                    // RoundedButton(
+                    //   text: "Home Page",
+                    //   color: Colors.grey[500]!.withOpacity(0.5),
+                    //   textColor: Colors.white,
+                    //   press: () {
+                    //     Navigator.pushReplacement(
+                    //       context,
+                    //       MaterialPageRoute(
+                    //         builder: (context) {
+                    //           return HomeScreen(login: 'halo',);
+                    //         },
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
               ),

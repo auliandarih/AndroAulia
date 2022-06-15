@@ -1,4 +1,5 @@
 import 'package:AAccounting/Screens/Signup/signup_screen.dart';
+import 'package:AAccounting/Screens/admin/main_screen_admin.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -10,40 +11,54 @@ import '../../../pallete.dart';
 import '../../forgot-password.dart';
 
 class Body extends StatelessWidget {
-
   final isiUsername = TextEditingController();
   final isiPassword = TextEditingController();
 
   //Cek Data API
-  void cekLogin(BuildContext context) async{
+  void cekLogin(BuildContext context) async {
     var url = Uri.parse(myUrl().akun_login);
-    var respon = await http.post(url, body: {
-      'email'   : isiUsername.text,
-      'pass'    : isiPassword.text
-    });
+    var respon = await http
+        .post(url, body: {'email': isiUsername.text, 'pass': isiPassword.text});
 
     var hasil = jsonDecode(respon.body);
     bool error = hasil['error'];
     String pesan = hasil['message'];
 
-    if (error == false){
+    if (error == false) {
+      if (hasil['user']['level'] == "admin") {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              print(hasil['user']['id_user']);
+              return MainScreenAdmin(
+                login: hasil['user']['id_user'],
+              );
+            },
+          ),
+        );
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return MainScreen(
+                login: hasil['user']['id_user'],
+              );
+            },
+          ),
+        );
+      }
       //Panggil Menu
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return MainScreen();
-          },
-        ),
-      );
-    }else{
-      showAlertDialog(context, "Login Gagal", "Username atau Password Salah, Silahkan Login Kembali !");
+
+    } else {
+      showAlertDialog(context, "Login Gagal",
+          "Username atau Password Salah, Silahkan Login Kembali !");
     }
   }
 
   //Metode tampil Pesan Error/Informasi
   showAlertDialog(BuildContext context, String judul, String pesan) {
-
     // set up the button
     Widget okButton = FlatButton(
       child: Text("OK"),
@@ -142,16 +157,18 @@ class Body extends StatelessWidget {
                       ),
                       RoundedButton(
                         buttonName: 'Login',
-                        press: (){
-                          if (isiUsername.text.isEmpty){
+                        press: () {
+                          if (isiUsername.text.isEmpty) {
                             //Pesan Jangan Kosong
-                            showAlertDialog(context,"Informasi","Username Jangan Kosong !");
-                          }else{
+                            showAlertDialog(context, "Informasi",
+                                "Username Jangan Kosong !");
+                          } else {
                             //Cek Password jangan sampe kosong
-                            if (isiPassword.text.isEmpty){
+                            if (isiPassword.text.isEmpty) {
                               //Pesan Jangan Kosong
-                              showAlertDialog(context, "Informasi", "Password Jangan Kosong !");
-                            }else{
+                              showAlertDialog(context, "Informasi",
+                                  "Password Jangan Kosong !");
+                            } else {
                               // Cek API INTERNET
                               cekLogin(context);
                             }
@@ -180,8 +197,8 @@ class Body extends StatelessWidget {
                         style: kBodyText,
                       ),
                       decoration: BoxDecoration(
-                          border:
-                          Border(bottom: BorderSide(width: 1, color: kWhite))),
+                          border: Border(
+                              bottom: BorderSide(width: 1, color: kWhite))),
                     ),
                   ),
                   SizedBox(

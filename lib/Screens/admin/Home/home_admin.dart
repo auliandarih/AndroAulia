@@ -1,10 +1,11 @@
 import 'dart:convert';
 
 import 'package:AAccounting/serverdata/api.dart';
-import 'package:AAccounting/widgets/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../constants.dart';
 
 class HomeAdmin extends StatefulWidget {
   const HomeAdmin({Key? key}) : super(key: key);
@@ -107,4 +108,28 @@ class _HomeAdminState extends State<HomeAdmin> {
       ),
     );
   }
+}
+
+AppBar buildAppBar(String judul) {
+  return AppBar(
+    automaticallyImplyLeading: false,
+    backgroundColor: kAppBar,
+    title: Text(
+      judul,
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    actions: [
+      TextButton.icon(
+        icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
+        label: Text("New Event",
+            style: TextStyle(
+              color: Colors.white, fontWeight: FontWeight.bold
+            )
+        ),
+        onPressed: () {},
+      ),
+    ],
+  );
 }

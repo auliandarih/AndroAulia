@@ -1,4 +1,4 @@
-#Thu Jun 16 21:37:53 ICT 2022
+#Sat Jun 18 11:59:14 ICT 2022
 base.0=E\:\\AULIA\\Kampus\\Semester 3\\Android\\Welcome\\Welcome\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

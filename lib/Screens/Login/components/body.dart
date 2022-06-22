@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../../main_screen.dart';
+import '../../member/main_screen.dart';
 import '../../../pallete.dart';
 import '../../forgot-password.dart';
 
@@ -23,6 +23,7 @@ class Body extends StatelessWidget {
     var hasil = jsonDecode(respon.body);
     bool error = hasil['error'];
     String pesan = hasil['message'];
+    String login = hasil['user']['id_user'].toString();
 
     if (error == false) {
       if (hasil['user']['level'] == "admin") {
@@ -30,9 +31,8 @@ class Body extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              print(hasil['user']['id_user']);
               return MainScreenAdmin(
-                login: hasil['user']['id_user'],
+                login: login,
               );
             },
           ),
@@ -43,7 +43,7 @@ class Body extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) {
               return MainScreen(
-                login: hasil['user']['id_user'],
+                login: login,
               );
             },
           ),

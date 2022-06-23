@@ -1,1 +1,1 @@
-enum MenuState { home, laporan, profil }
+enum MenuState { home, laporan, profil, homeadmin, laporanadmin, profiladmin }

@@ -1,5 +1,5 @@
 import 'package:AAccounting/Screens/Signup/signup_screen.dart';
-import 'package:AAccounting/Screens/admin/main_screen_admin.dart';
+import 'package:AAccounting/Screens/admin/Home/home_admin.dart';
 import 'package:AAccounting/Screens/member/home/home_screen.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../../member/main_screen.dart';
 import '../../../pallete.dart';
 import '../../forgot-password.dart';
 
@@ -32,8 +31,8 @@ class Body extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return MainScreenAdmin(
-                login: login,
+              return HomeAdmin(
+                id: login,
               );
             },
           ),

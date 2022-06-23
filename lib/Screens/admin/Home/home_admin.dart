@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:AAccounting/components/custom_bottom_nav.dart';
+import 'package:AAccounting/enums.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,7 +10,9 @@ import 'package:http/http.dart' as http;
 import '../../../constants.dart';
 
 class HomeAdmin extends StatefulWidget {
-  const HomeAdmin({Key? key}) : super(key: key);
+  final String id;
+  static String routeName = "/homeadmin";
+  const HomeAdmin({Key? key, required this.id}) : super(key: key);
 
   @override
   State<HomeAdmin> createState() => _HomeAdminState();
@@ -33,6 +37,7 @@ class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.homeadmin, id: widget.id),
         appBar: buildAppBar("Daftar Event"),
         body: RefreshIndicator(
           child: FutureBuilder<List>(
@@ -124,10 +129,7 @@ AppBar buildAppBar(String judul) {
       TextButton.icon(
         icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
         label: Text("New Event",
-            style: TextStyle(
-              color: Colors.white, fontWeight: FontWeight.bold
-            )
-        ),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         onPressed: () {},
       ),
     ],

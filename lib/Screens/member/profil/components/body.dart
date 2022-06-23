@@ -20,8 +20,6 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
 
-  final String nama = "Aulia Andari";
-
   Future<Map<String, dynamic>> ambildata() async{
     try {
       var url = Uri.parse(myUrl().akun_profil);

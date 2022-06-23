@@ -6,25 +6,25 @@ import 'package:http/http.dart' as http;
 import 'akun_pic.dart';
 
 class Body extends StatefulWidget {
+  final String id;
 
+  const Body({Key? key, required this.id}) : super(key: key);
   @override
   State<Body> createState() => _BodyState();
 }
 
 class _BodyState extends State<Body> {
-  final String nama = "Aulia Andari";
-
-  Future<Map<String, dynamic>> ambildata() async{
+  Future<Map<String, dynamic>> ambildata() async {
     try {
       var url = Uri.parse(myUrl().akun_profil);
       var respon = await http.post(url, body: {
-        'nama': nama,
+        'id_user': widget.id,
       });
       var data = jsonDecode(respon.body) as Map<String, dynamic>;
 
       return data;
-    }catch(err){
-      throw(err);
+    } catch (err) {
+      throw (err);
     }
   }
 
@@ -43,7 +43,7 @@ class _BodyState extends State<Body> {
           onRefresh: refreshData,
           child: FutureBuilder(
             future: ambildata(),
-            builder: (context, tempData){
+            builder: (context, tempData) {
               if (tempData.hasError) print(tempData.error);
               return tempData.hasData == true
                   ? designAkun(tempData.requireData)
@@ -55,7 +55,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Widget designAkun(data){
+  Widget designAkun(data) {
     Size size = MediaQuery.of(context).size;
     return Container(
       child: Column(
@@ -103,7 +103,7 @@ class _BodyState extends State<Body> {
                       ),
                     ),
                   ),
-                  onPressed: (){},
+                  onPressed: () {},
                 ),
               ),
             ),
@@ -113,7 +113,7 @@ class _BodyState extends State<Body> {
     );
   }
 
-  Widget namacolumn(String judul, String isi){
+  Widget namacolumn(String judul, String isi) {
     return Padding(
       padding: const EdgeInsets.only(left: 20, top: 20),
       child: Row(

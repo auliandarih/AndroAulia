@@ -20,13 +20,12 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
-  final String nama = "Aulia Andari";
 
   Future<Map<String, dynamic>> ambildata() async {
     try {
       var url = Uri.parse(myUrl().akun_profil);
       var respon = await http.post(url, body: {
-        'nama': nama,
+        'id_user': widget.id,
       });
       var data = jsonDecode(respon.body) as Map<String, dynamic>;
 
@@ -87,7 +86,9 @@ class _ProfilScreenState extends State<ProfilScreen> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return AkunScreen();
+                                return AkunScreen(
+                                  id: widget.id,
+                                );
                               },
                             ),
                           )

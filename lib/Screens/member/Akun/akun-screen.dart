@@ -3,14 +3,15 @@ import '../../../constants.dart';
 import 'components/body.dart';
 
 class AkunScreen extends StatelessWidget {
-  const AkunScreen({Key? key}) : super(key: key);
-
+  final String id;
+  const AkunScreen({Key? key, required this.id}) : super(key: key);
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xf0181818),
       appBar: buildAppBar(),
-      body: Body(),
+      body: Body(id: id,),
     );
   }
 
@@ -25,4 +26,3 @@ class AkunScreen extends StatelessWidget {
     );
   }
 }
-

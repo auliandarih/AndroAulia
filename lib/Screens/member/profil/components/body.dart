@@ -11,8 +11,8 @@ import 'package:http/http.dart' as http;
 import 'profile_pic.dart';
 
 class Body extends StatefulWidget {
-  final String login;
-  const Body({Key? key, required this.login}) : super(key: key);
+  final String id;
+  const Body({Key? key, required this.id}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();
@@ -26,7 +26,7 @@ class _BodyState extends State<Body> {
     try {
       var url = Uri.parse(myUrl().akun_profil);
       var respon = await http.post(url, body: {
-        'nama': nama,
+        'id_user': widget.id,
       });
       var data = jsonDecode(respon.body) as Map<String, dynamic>;
 
@@ -84,7 +84,9 @@ class _BodyState extends State<Body> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return AkunScreen();
+                                  return AkunScreen(
+                                    id: widget.id,
+                                  );
                                 },
                               ),
                             )

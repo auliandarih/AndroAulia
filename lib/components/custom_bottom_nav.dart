@@ -9,9 +9,11 @@ import '../constants.dart';
 import '../enums.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
+  final String id;
   const CustomBottomNavBar({
     Key? key,
     required this.selectedMenu,
+    required this.id,
   }) : super(key: key);
 
   final MenuState selectedMenu;
@@ -29,43 +31,33 @@ class CustomBottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              IconButton(icon: Icon(FontAwesomeIcons.plus),
+              IconButton(
+                icon: Icon(FontAwesomeIcons.plus),
                 color: Colors.white,
-                onPressed: () =>
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context){
-                              return HomeScreen();
-                            }
-                        )
-                    ),
-                ),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return HomeScreen(
+                    id: id,
+                  );
+                })),
+              ),
               IconButton(
                 icon: Icon(FontAwesomeIcons.clipboard),
                 color: Colors.white,
-                onPressed: () =>
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context){
-                              return LaporanScreen();
-                            }
-                        )
-                    ),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return LaporanScreen();
+                })),
               ),
               IconButton(
                 icon: Icon(FontAwesomeIcons.user),
                 color: Colors.white,
-                onPressed: () =>
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context){
-                              return ProfilScreen();
-                            }
-                        )
-                    ),
+                onPressed: () => Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) {
+                  return ProfilScreen(
+                    id: id,
+                  );
+                })),
               ),
             ],
           )),

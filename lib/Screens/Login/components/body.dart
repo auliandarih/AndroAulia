@@ -1,5 +1,6 @@
 import 'package:AAccounting/Screens/Signup/signup_screen.dart';
 import 'package:AAccounting/Screens/admin/main_screen_admin.dart';
+import 'package:AAccounting/Screens/member/home/home_screen.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +43,8 @@ class Body extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return MainScreen(
-                login: login,
+              return HomeScreen(
+                id: login,
               );
             },
           ),

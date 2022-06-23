@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   int selectedIndex = 0;
-  final screen = [HomeScreen(), LaporanScreen(), ProfilScreen(id: widget.login,)];
+  final screen = [];
 
   @override
   Widget build(BuildContext context) {

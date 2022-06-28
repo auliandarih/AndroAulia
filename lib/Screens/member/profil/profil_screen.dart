@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:AAccounting/Screens/Login/login_screen.dart';
 import 'package:AAccounting/Screens/member/Akun/akun-screen.dart';
 import 'package:AAccounting/components/custom_bottom_nav.dart';
+import 'package:AAccounting/enums.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants.dart';
-import 'components/body.dart';
 import 'package:http/http.dart' as http;
 import 'components/profile_menu.dart';
 import 'components/profile_pic.dart';
@@ -45,6 +45,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profil, id: widget.id),
         backgroundColor: kAppBar,
         appBar: buildAppBar(),
         body: Center(

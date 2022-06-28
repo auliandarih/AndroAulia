@@ -1,6 +1,6 @@
 import 'dart:convert';
-
-import 'package:AAccounting/components/custom_bottom_nav.dart';
+import 'package:AAccounting/Screens/admin/Home/event/dataevent.dart';
+import 'package:AAccounting/components/custom_bottom_nav_admin.dart';
 import 'package:AAccounting/enums.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
@@ -12,16 +12,21 @@ import '../../../constants.dart';
 class HomeAdmin extends StatefulWidget {
   final String id;
   static String routeName = "/homeadmin";
-  const HomeAdmin({Key? key, required this.id}) : super(key: key);
+  const HomeAdmin({
+    Key? key,
+    required this.id,
+  }) : super(key: key);
 
   @override
   State<HomeAdmin> createState() => _HomeAdminState();
 }
 
 class _HomeAdminState extends State<HomeAdmin> {
+
   Future<List> tampilSemuaData() async {
     final url = Uri.parse(myUrl().tampil_event);
     final respon = await http.post(url);
+
     final hasil = jsonDecode(respon.body);
 
     return hasil;
@@ -37,7 +42,11 @@ class _HomeAdminState extends State<HomeAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.homeadmin, id: widget.id),
+        bottomNavigationBar: NavBarAdmin(
+          selectedMenu: MenuState.homeadmin,
+          id: '',
+        ),
+        backgroundColor: kAppBar,
         appBar: buildAppBar("Daftar Event"),
         body: RefreshIndicator(
           child: FutureBuilder<List>(
@@ -59,36 +68,47 @@ class _HomeAdminState extends State<HomeAdmin> {
     return ListView.builder(
         itemCount: dataHasil == null ? 0 : dataHasil.length,
         itemBuilder: (context, urutan) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
-            child: Card(
-              elevation: 7,
-              shadowColor: Colors.grey[800],
-              child: Container(
-                height: 120,
-                color: Colors.grey[500]!.withOpacity(0.3),
-                child: Row(
-                  children: <Widget>[
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 5, right: 5),
-                        child: Container(
-                          height: 110,
-                          child: Column(
-                            children: <Widget>[
-                              itemData(dataHasil[urutan]['nm_event']),
-                              itemData(dataHasil[urutan]['no_event']),
-                              itemData(dataHasil[urutan]['tgl_mulai'])
-                            ],
+          return GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return DataEvent(
+                      list: dataHasil,
+                      index: urutan,
+                    );
+                  },
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
+              child: Card(
+                elevation: 7,
+                shadowColor: Colors.grey[800],
+                child: Container(
+                  height: 120,
+                  color: Colors.grey[500]!.withOpacity(0.3),
+                  child: Column(
+                    children: <Widget>[
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          child: Container(
+                            height: 110,
+                            child: Column(
+                              children: <Widget>[
+                                itemData(dataHasil[urutan]['nm_event']),
+                                itemData(dataHasil[urutan]['no_event']),
+                                itemData(dataHasil[urutan]['tgl_mulai'])
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(FontAwesomeIcons.chevronRight),
-                      onPressed: () {},
-                    )
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -118,18 +138,16 @@ class _HomeAdminState extends State<HomeAdmin> {
 AppBar buildAppBar(String judul) {
   return AppBar(
     automaticallyImplyLeading: false,
-    backgroundColor: kAppBar,
+    backgroundColor: Colors.amber,
     title: Text(
       judul,
-      style: TextStyle(
-        fontWeight: FontWeight.bold,
-      ),
+      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
     ),
     actions: [
       TextButton.icon(
-        icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
+        icon: Icon(FontAwesomeIcons.plus, color: Colors.black),
         label: Text("New Event",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
         onPressed: () {},
       ),
     ],

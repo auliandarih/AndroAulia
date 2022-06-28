@@ -9,7 +9,7 @@ AppBar buildAppBar(String judul) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: kAppBar,
+    backgroundColor: Colors.amber,
     title: Text(
       judul,
       style: TextStyle(

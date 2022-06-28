@@ -46,7 +46,7 @@ class CustomBottomNavBar extends StatelessWidget {
                 color: Colors.white,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
-                  return LaporanScreen();
+                  return LaporanScreen(id: id,);
                 })),
               ),
               IconButton(

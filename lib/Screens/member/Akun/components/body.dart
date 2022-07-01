@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:AAccounting/pallete.dart';
 import 'package:AAccounting/serverdata/api.dart';
+import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'akun_pic.dart';
@@ -87,24 +88,10 @@ class _BodyState extends State<Body> {
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: MaterialButton(
-                  color: Colors.grey[500]!.withOpacity(0.5),
-                  child: Container(
-                    alignment: Alignment.center,
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    height: size.height * 0.04,
-                    width: size.width * 0.4,
-                    child: Text(
-                      "EDIT DATA",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
+                child: RoundedButton(
+                  buttonName: 'Edit Data',
+                  press: () {}
+                )
               ),
             ),
           ),

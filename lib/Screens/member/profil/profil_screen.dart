@@ -20,7 +20,6 @@ class ProfilScreen extends StatefulWidget {
 }
 
 class _ProfilScreenState extends State<ProfilScreen> {
-
   Future<Map<String, dynamic>> ambildata() async {
     try {
       var url = Uri.parse(myUrl().akun_profil);
@@ -63,7 +62,8 @@ class _ProfilScreenState extends State<ProfilScreen> {
               ),
             ),
           ),
-        ));
+        )
+      );
   }
 
   Widget designProfil(data) {

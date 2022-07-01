@@ -6,7 +6,6 @@ import 'components/body.dart';
 
 class LaporanScreen extends StatelessWidget {
   final String id;
-  static String routeName = "/laporan";
 
   const LaporanScreen({Key? key, required this.id}) : super(key: key);
 

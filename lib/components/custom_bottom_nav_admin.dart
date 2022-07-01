@@ -1,5 +1,5 @@
 import 'package:AAccounting/Screens/admin/Home/home_admin.dart';
-import 'package:AAccounting/Screens/admin/Profil/profil_admin.dart';
+import 'package:AAccounting/Screens/admin/Menu/menu_admin.dart';
 import 'package:AAccounting/Screens/admin/Report/report_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -41,7 +41,7 @@ class NavBarAdmin extends StatelessWidget {
                 })),
               ),
               IconButton(
-                icon: Icon(FontAwesomeIcons.clipboard),
+                icon: Icon(FontAwesomeIcons.file),
                 color: Colors.white,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
@@ -49,11 +49,11 @@ class NavBarAdmin extends StatelessWidget {
                 })),
               ),
               IconButton(
-                icon: Icon(FontAwesomeIcons.user),
+                icon: Icon(FontAwesomeIcons.bars),
                 color: Colors.white,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
-                  return ProfilAdmin(
+                  return MenuAdmin(
                     id: id,
                   );
                 })),

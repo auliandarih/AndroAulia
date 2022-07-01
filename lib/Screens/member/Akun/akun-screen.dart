@@ -5,20 +5,31 @@ import 'components/body.dart';
 class AkunScreen extends StatelessWidget {
   final String id;
   const AkunScreen({Key? key, required this.id}) : super(key: key);
+
+  get kWhite => null;
  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xf0181818),
-      appBar: buildAppBar(),
+      appBar: buildAppBar(context),
       body: Body(id: id,),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
       backgroundColor: kAppBar,
+      leading: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(
+                Icons.arrow_back_ios,
+                color: kWhite,
+              ),
+            ),
       title: Text(
         "My Account",
         style: TextStyle(fontWeight: FontWeight.bold),

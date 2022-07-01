@@ -12,43 +12,44 @@ class Body extends StatelessWidget {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                LaporanMenu(
-                  text: 'Jurnal Umum',
-                  press: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const JurnalUmum()));
-                  },
-                ),
-                LaporanMenu(
-                  text: 'Laporan Laba Rugi',
-                  press: () {},
-                ),
-                LaporanMenu(
-                  text: 'Jurnal Penyesuaian',
-                  press: () {},
-                ),
-                LaporanMenu(
-                  text: 'Laporan Arus Kas',
-                  press: () {},
-                ),
-                LaporanMenu(
-                  text: 'Laporan Perubahan Modal',
-                  press: () {},
-                ),
-                LaporanMenu(
-                  text: 'Neraca',
-                  press: () {},
-                ),
-                LaporanMenu(
-                  text: 'Akun Perkiraan',
-                  press: () {},
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-              ]
-            ),
+            child: Column(children: [
+              LaporanMenu(
+                text: 'Jurnal Umum',
+                press: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const JurnalUmum()));
+                },
+              ),
+              LaporanMenu(
+                text: 'Laporan Laba Rugi',
+                press: () {},
+              ),
+              LaporanMenu(
+                text: 'Jurnal Penyesuaian',
+                press: () {},
+              ),
+              LaporanMenu(
+                text: 'Laporan Arus Kas',
+                press: () {},
+              ),
+              LaporanMenu(
+                text: 'Laporan Perubahan Modal',
+                press: () {},
+              ),
+              LaporanMenu(
+                text: 'Neraca',
+                press: () {},
+              ),
+              LaporanMenu(
+                text: 'Akun Perkiraan',
+                press: () {},
+              ),
+              SizedBox(
+                height: 20,
+              ),
+            ]),
           ),
         ),
       ],

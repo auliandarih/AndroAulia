@@ -1,7 +1,6 @@
 import 'package:AAccounting/components/custom_bottom_nav.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../constants.dart';
 import '../../../enums.dart';
 import 'components/body.dart';
@@ -25,19 +24,13 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: kAppBar,
+      centerTitle: true,
       title: Text(
         "Input Data",
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
-      actions: [
-        TextButton.icon(
-          icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
-          label: Text("Akun Transaksi", style: TextStyle(color: Colors.white)),
-          onPressed: () {},
-        ),
-      ],
     );
   }
 }

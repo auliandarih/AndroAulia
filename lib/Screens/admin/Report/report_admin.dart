@@ -15,7 +15,7 @@ class ReportAdmin extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: NavBarAdmin(
         selectedMenu: MenuState.laporanadmin,
-        id: '',
+        id: id,
       ),
       backgroundColor: kAppBar,
       appBar: buildAppBar("Laporan"),

@@ -6,19 +6,18 @@ import 'dart:convert';
 import 'background.dart';
 
 class Body extends StatelessWidget {
-
-  final isiNoPengajuan  = TextEditingController();
-  final isiAkun         = TextEditingController();
-  final isiNama         = TextEditingController();
-  final isiDeskripsi    = TextEditingController();
-  final isiTanggal      = TextEditingController();
-  final isiHarga        = TextEditingController();
-  final isiQty          = TextEditingController();
-  final isiJumlah       = TextEditingController();
-  final isiRemark       = TextEditingController();
+  final isiNoPengajuan = TextEditingController();
+  final isiAkun = TextEditingController();
+  final isiNama = TextEditingController();
+  final isiEvent = TextEditingController();
+  final isiDeskripsi = TextEditingController();
+  final isiTanggal = TextEditingController();
+  final isiHarga = TextEditingController();
+  final isiQty = TextEditingController();
+  final isiJumlah = TextEditingController();
+  final isiRemark = TextEditingController();
 
   //Cek Data API
-
 
   @override
   Widget build(BuildContext context) {
@@ -37,360 +36,91 @@ class Body extends StatelessWidget {
                 Column(
                   children: [
                     //Pilih Akun
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20.0),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Pilih Akun",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: AkunDropdown(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    dropdown(context, "Pilih Akun", AkunDropdown()),
 
                     //Nama Transaksi
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Nama Transaksi",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: TransaksiDropdown(),
-                            ),
-                          ),
-                        ],
+                    dropdown(context, "Perkiraan", TransaksiDropdown()),
+
+                    //Event
+                    fieldInput(
+                      context,
+                      "Event",
+                      HomeField(
+                        inputType: TextInputType.text,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiEvent
                       ),
                     ),
 
                     //Deskripsi
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Deskripsi",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiDeskripsi,
-                                inputType: TextInputType.text,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Deskripsi",
+                      HomeField(
+                        inputType: TextInputType.text,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiDeskripsi
                       ),
                     ),
 
                     //Tanggal
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Tanggal",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiTanggal,
-                                inputType: TextInputType.datetime,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Tanggal",
+                      HomeField(
+                        inputType: TextInputType.datetime,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiTanggal
                       ),
                     ),
 
                     //Harga
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Harga",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiHarga,
-                                inputType: TextInputType.number,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Harga",
+                      HomeField(
+                        inputType: TextInputType.number,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiHarga
                       ),
                     ),
 
                     //QTY
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "QTY",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiQty,
-                                inputType: TextInputType.number,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Qty",
+                      HomeField(
+                        inputType: TextInputType.number,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiQty
                       ),
                     ),
 
                     //Jumlah Transaksi
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Jumlah",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiJumlah,
-                                inputType: TextInputType.number,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Jumlah",
+                      HomeField(
+                        inputType: TextInputType.number,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiJumlah
                       ),
                     ),
 
                     //Remark
-                    Padding(
-                      padding: const EdgeInsets.only(top: 20),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Container(
-                              alignment: Alignment.centerLeft,
-                              height: size.height * 0.08,
-                              width: 180,
-                              child: Text(
-                                "Remark",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: size.height * 0.08,
-                            width: 20,
-                            child: Text(
-                              ":",
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: JumlahField(
-                                textEditingController: isiRemark,
-                                inputType: TextInputType.text,
-                                inputAction: TextInputAction.next,
-                              ),
-                            ),
-                          ),
-                        ],
+                    fieldInput(
+                      context,
+                      "Remark",
+                      HomeField(
+                        inputType: TextInputType.text,
+                        inputAction: TextInputAction.next,
+                        textEditingController: isiRemark
                       ),
                     ),
 
                     //Upload Referensi
                     Padding(
-                      padding: const EdgeInsets.only(top: 20),
+                      padding: const EdgeInsets.only(top: 20, bottom: 10),
                       child: Row(
                         children: [
                           Padding(
@@ -436,21 +166,12 @@ class Body extends StatelessWidget {
                       ),
                     ),
 
-                    SizedBox(
-                      height: 100,
-                    ),
                     HomeRoundedButton(
                       buttonName: 'Submit',
-                      press: (){},
+                      press: () {},
                     ),
                     SizedBox(
-                      height: 30,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-                      ],
+                      height: 20,
                     ),
                   ],
                 )
@@ -459,6 +180,92 @@ class Body extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget dropdown(BuildContext context, String judul, dropdown) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(top: 20.0),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              height: size.height * 0.08,
+              width: 180,
+              child: Text(
+                judul,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: size.height * 0.08,
+            width: 20,
+            child: Text(
+              ":",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: dropdown,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget fieldInput(BuildContext context, String judul, field) {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              height: size.height * 0.08,
+              width: 180,
+              child: Text(
+                judul,
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            alignment: Alignment.center,
+            height: size.height * 0.08,
+            width: 20,
+            child: Text(
+              ":",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              child: field,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

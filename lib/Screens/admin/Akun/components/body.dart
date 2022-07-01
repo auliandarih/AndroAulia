@@ -17,7 +17,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   Future<Map<String, dynamic>> ambildata() async {
     try {
-      var url = Uri.parse(myUrl().akun_profil);
+      var url = Uri.parse(myUrl().user_profil);
       var respon = await http.post(url, body: {
         'id_user': widget.id,
       });

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../constants.dart';
-import '../pallete.dart';
 
 
 
@@ -9,7 +8,7 @@ AppBar buildAppBar(String judul) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: Colors.amber,
+    backgroundColor: kAppBar,
     title: Text(
       judul,
       style: TextStyle(

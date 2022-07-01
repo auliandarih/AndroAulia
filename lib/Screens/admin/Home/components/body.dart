@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:AAccounting/Screens/admin/Home/event/dataevent.dart';
 import 'package:AAccounting/serverdata/api.dart';
+import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,19 +31,24 @@ class _BodyState extends State<Body> {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      child: FutureBuilder<List>(
-        future: tampilSemuaData(),
-        builder: (context, tempData) {
-          if (tempData.hasError) print(tempData.error);
-          return tempData.hasData == true
-              ? desainTampilan(tempData.requireData)
-              : Center(
-                  child: CircularProgressIndicator(),
-                );
-        },
-      ),
-      onRefresh: refreshDataEvent,
+    return Stack(
+      children: [
+        BackgroundColor(),
+        RefreshIndicator(
+          child: FutureBuilder<List>(
+            future: tampilSemuaData(),
+            builder: (context, tempData) {
+              if (tempData.hasError) print(tempData.error);
+              return tempData.hasData == true
+                  ? desainTampilan(tempData.requireData)
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            },
+          ),
+          onRefresh: refreshDataEvent,
+        ),
+      ],
     );
   }
 

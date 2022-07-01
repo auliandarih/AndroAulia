@@ -17,7 +17,7 @@ class LaporanMenu extends StatelessWidget {
       padding: EdgeInsets.only(right: 20, left: 20, top: 20),
       child: TextButton(
         style: TextButton.styleFrom(
-          primary: Colors.black,
+          primary: Colors.white,
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -32,7 +32,7 @@ class LaporanMenu extends StatelessWidget {
                 text,
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),

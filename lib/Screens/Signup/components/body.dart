@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:AAccounting/Screens/Login/login_screen.dart';
+import 'package:AAccounting/Screens/admin/Menu/menu_admin.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/bg-onboard.dart';
 import 'package:flutter/material.dart';
@@ -8,31 +8,82 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../pallete.dart';
-import 'or_divider.dart';
-import 'social_icon.dart';
 
 class Body extends StatelessWidget {
+  final String id;
 
-  final isiEmail      = TextEditingController();
-  final isiNama       = TextEditingController();
-  final isiPassword   = TextEditingController();
-  final isiPhone      = TextEditingController();
-  final isiJabatan    = TextEditingController();
+  final isiEmail = TextEditingController();
+  final isiNama = TextEditingController();
+  final isiPassword = TextEditingController();
+  final isiPhone = TextEditingController();
+  final isiJabatan = TextEditingController();
   final isiPerusahaan = TextEditingController();
-  final isiLevel      = TextEditingController();
+  final isiLevel = TextEditingController();
 
-  void daftar() async {
-    var url = Uri.parse(myUrl().akun_tambah);
+  Body({Key? key, required this.id}) : super(key: key);
+
+  void daftar(BuildContext context) async {
+    var url = Uri.parse(myUrl().user_tambah);
     var respon = await http.post(url, body: {
-      'email'         : isiEmail.text,
-      'nama'          : isiNama.text,
-      'hp'            : isiPhone.text,
-      'id_jabatan'    : isiJabatan.text,
-      'nm_perusahaan' : isiJabatan.text,
-      'level'         : isiLevel.text,
+      'email': isiEmail.text,
+      'nama': isiNama.text,
+      'hp': isiPhone.text,
+      'id_jabatan': isiJabatan.text,
+      'nm_perusahaan': isiPerusahaan.text,
+      'level': isiLevel.text,
+      'pass': isiPassword.text,
     });
+
     var hasil = jsonDecode(respon.body);
-    print(hasil);
+
+    bool error = hasil['error'];
+    String pesan = hasil['message'];
+
+    if (error == false) {
+      showAlertDialog(context, "Berhasil Daftar", "Silahkan Login !");
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) {
+            return MenuAdmin(id: id,);
+          },
+        ),
+      );
+
+      //Panggil Menu
+    } else {
+      showAlertDialog(context, "Login Gagal",
+          "Username atau Password Salah, Silahkan Login Kembali !");
+    }
+  }
+
+  //Metode tampil Pesan Error/Informasi
+  showAlertDialog(BuildContext context, String judul, String pesan) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop(); // dismiss dialog
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(judul),
+      content: Text(pesan),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -55,7 +106,7 @@ class Body extends StatelessWidget {
               ),
             ),
             title: Text(
-              'Create New Account',
+              'Daftar Akun',
               style: kBodyText,
             ),
             centerTitle: true,
@@ -133,7 +184,7 @@ class Body extends StatelessWidget {
                       textEditingController: isiJabatan,
                       icon: FontAwesomeIcons.envelope,
                       hint: 'Jabatan',
-                      inputType: TextInputType.emailAddress,
+                      inputType: TextInputType.text,
                       inputAction: TextInputAction.next,
                     ),
                     TextInputField(
@@ -147,20 +198,13 @@ class Body extends StatelessWidget {
                       textEditingController: isiLevel,
                       icon: FontAwesomeIcons.user,
                       hint: 'Level',
-                      inputType: TextInputType.visiblePassword,
-                      inputAction: TextInputAction.done,
-                    ),
-                    TextInputField(
-                      textEditingController: isiPassword,
-                      icon: FontAwesomeIcons.lock,
-                      hint: 'Password',
-                      inputType: TextInputType.visiblePassword,
+                      inputType: TextInputType.text,
                       inputAction: TextInputAction.next,
                     ),
                     TextInputField(
                       textEditingController: isiPassword,
                       icon: FontAwesomeIcons.lock,
-                      hint: 'Confirm Password',
+                      hint: 'Password',
                       inputType: TextInputType.visiblePassword,
                       inputAction: TextInputAction.done,
                     ),
@@ -169,39 +213,23 @@ class Body extends StatelessWidget {
                     ),
                     RoundedButton(
                       buttonName: 'Register',
-                      press: (){},
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Already have an account ?',
-                          style: kBodyText,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return LoginScreen();
-                                },
-                              ),
-                            );
-                          },
-                          child: Text(
-                            'Login',
-                            style: kBodyText.copyWith(
-                                color: kBlue, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: 30,
+                      press: () {
+                        if (isiEmail.text.isEmpty) {
+                          //Pesan Jangan Kosong
+                          showAlertDialog(
+                              context, "Informasi", "Username Jangan Kosong !");
+                        } else {
+                          //Cek Password jangan sampe kosong
+                          if (isiPassword.text.isEmpty) {
+                            //Pesan Jangan Kosong
+                            showAlertDialog(context, "Informasi",
+                                "Password Jangan Kosong !");
+                          } else {
+                            // Cek API INTERNET
+                            daftar(context);
+                          }
+                        }
+                      },
                     ),
                   ],
                 )

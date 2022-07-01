@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:AAccounting/Screens/Login/login_screen.dart';
+import 'package:AAccounting/Screens/Signup/signup_screen.dart';
 import 'package:AAccounting/Screens/admin/Akun/akun-screen.dart';
+import 'Daftar_Member/daftar_member.dart';
 import 'component/profile_menu.dart';
 import 'package:AAccounting/components/custom_bottom_nav_admin.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,7 +25,7 @@ class MenuAdmin extends StatefulWidget {
 class _MenuAdminState extends State<MenuAdmin> {
   Future<Map<String, dynamic>> ambildata() async {
     try {
-      var url = Uri.parse(myUrl().akun_profil);
+      var url = Uri.parse(myUrl().user_profil);
       var respon = await http.post(url, body: {
         'id_user': widget.id,
       });
@@ -81,16 +83,14 @@ class _MenuAdminState extends State<MenuAdmin> {
                     children: [
                       SizedBox(height: 20),
                       ProfileMenu(
-                        text: "Akun",
-                        icon: FontAwesomeIcons.user,
+                        text: "Daftar Member",
+                        icon: FontAwesomeIcons.userFriends,
                         press: () => {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return AkunScreen(
-                                  id: widget.id,
-                                );
+                                return DaftarMember();
                               },
                             ),
                           )
@@ -99,7 +99,16 @@ class _MenuAdminState extends State<MenuAdmin> {
                       ProfileMenu(
                         text: "Tambah Member",
                         icon: FontAwesomeIcons.userPlus,
-                        press: () {},
+                        press: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SignUpScreen(id: widget.id,);
+                              },
+                            ),
+                          );
+                        },
                       ),
                       ProfileMenu(
                         text: "Bantuan",

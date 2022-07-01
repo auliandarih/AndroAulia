@@ -16,7 +16,7 @@ class Body extends StatelessWidget {
 
   //Cek Data API
   void cekLogin(BuildContext context) async {
-    var url = Uri.parse(myUrl().akun_login);
+    var url = Uri.parse(myUrl().user_login);
     var respon = await http
         .post(url, body: {'email': isiUsername.text, 'pass': isiPassword.text});
 
@@ -175,31 +175,7 @@ class Body extends StatelessWidget {
                           }
                         },
                       ),
-                      SizedBox(
-                        height: 25,
-                      ),
                     ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return SignUpScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      child: Text(
-                        'Create New Account',
-                        style: kBodyText,
-                      ),
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: BorderSide(width: 1, color: kWhite))),
-                    ),
                   ),
                   SizedBox(
                     height: 20,

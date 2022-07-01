@@ -3,9 +3,10 @@ import 'domain.dart';
 class myUrl{
 
   //LOGIN
-  final String akun_login   = Domain().domainku + "user_login.php";
-  final String akun_tambah  = Domain().domainku + "user_tambah.php";
-  final String akun_profil  = Domain().domainku + "user_profil.php";
+  final String user_login   = Domain().domainku + "user_login.php";
+  final String user_tambah  = Domain().domainku + "user_tambah.php";
+  final String user_profil  = Domain().domainku + "user_profil.php";
+  final String user_tampil  = Domain().domainku + "user_tampil_semua.php";
 
   //EVENT
   final String tampil_event     = Domain().domainku + "event_tampil_semua.php";

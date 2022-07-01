@@ -1,3 +1,4 @@
+import 'package:AAccounting/Screens/admin/Home/event/tambah_event.dart';
 import 'package:AAccounting/components/custom_bottom_nav_admin.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -15,13 +16,14 @@ class HomeAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavBarAdmin(id: id, selectedMenu: MenuState.homeadmin),
-      appBar: buildAppBar(),
+      bottomNavigationBar:
+          NavBarAdmin(id: id, selectedMenu: MenuState.homeadmin),
+      appBar: buildAppBar(context),
       body: Body(),
     );
   }
 
-  AppBar buildAppBar() {
+  AppBar buildAppBar(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: kAppBar,
@@ -33,10 +35,22 @@ class HomeAdmin extends StatelessWidget {
       ),
       actions: [
         TextButton.icon(
-          icon: Icon(FontAwesomeIcons.plus, color: Colors.black),
-          label: Text("New Event",
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-          onPressed: () {},
+          icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
+          label: Text("Add Event",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return TambahEvent(
+                    id: id,
+                  );
+                },
+              ),
+            );
+          },
         ),
       ],
     );

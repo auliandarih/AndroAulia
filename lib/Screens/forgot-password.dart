@@ -14,7 +14,7 @@ class ForgotPassword extends StatelessWidget {
 
   //Cek Data API
   void cekLogin(BuildContext context) async{
-    var url = Uri.parse(myUrl().akun_login);
+    var url = Uri.parse(myUrl().user_login);
     var respon = await http.post(url, body: {
       'nik'   : isiUsername.text,
       'pass'  : isiPassword.text

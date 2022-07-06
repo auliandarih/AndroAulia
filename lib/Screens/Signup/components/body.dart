@@ -96,15 +96,6 @@ class Body extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0,
-            leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: kWhite,
-              ),
-            ),
             title: Text(
               'Daftar Akun',
               style: kBodyText,

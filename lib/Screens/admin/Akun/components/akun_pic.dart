@@ -3,9 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../../constants.dart';
 
 class AkunPic extends StatelessWidget {
-  const AkunPic({
-    Key? key,
-  }) : super(key: key);
+  final String urlFoto;
+  const AkunPic({Key? key, required this.urlFoto}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +16,9 @@ class AkunPic extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           CircleAvatar(
-            radius: kSpacingUnit * 8,
-            backgroundColor: kAppBar,
-            backgroundImage: AssetImage('assets/images/aulia.JPG'),
-          ),
+              radius: kSpacingUnit * 8,
+              backgroundColor: kAppBar,
+              backgroundImage: NetworkImage(urlFoto)),
           Positioned(
             right: -16,
             bottom: 0,

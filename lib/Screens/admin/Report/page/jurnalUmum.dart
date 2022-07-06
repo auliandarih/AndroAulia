@@ -14,7 +14,45 @@ class _JurnalUmumState extends State<JurnalUmum> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBarMenu(context, "Jurnal Umum"),
+      appBar: buildAppBarMenu("Jurnal Umum"),
+      body: SingleChildScrollView(
+        child: DataTable(
+          columns: <DataColumn>[
+            DataColumn(
+              label: Text('Transaksi'),
+            ),
+            DataColumn(
+              label: Text('Debit'),
+            ),
+            DataColumn(
+              label: Text('Kredit'),
+            ),
+          ],
+          rows: <DataRow>[
+            DataRow(
+              cells: <DataCell>[
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+              ],
+            ),
+            DataRow(
+              cells: <DataCell>[
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+              ],
+              ),
+            DataRow(
+              cells: <DataCell>[
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+                DataCell(Text('Data')),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

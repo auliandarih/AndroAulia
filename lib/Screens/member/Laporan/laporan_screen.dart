@@ -26,7 +26,7 @@ class LaporanScreen extends StatelessWidget {
       centerTitle: true,
       backgroundColor: kAppBar,
       title: Text(
-        "LAPORAN",
+        "Data Pengajuan",
         style: TextStyle(fontWeight: FontWeight.bold),
       ),
     );

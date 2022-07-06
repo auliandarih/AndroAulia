@@ -83,6 +83,22 @@ class _MenuAdminState extends State<MenuAdmin> {
                     children: [
                       SizedBox(height: 20),
                       ProfileMenu(
+                        text: "Akun",
+                        icon: FontAwesomeIcons.user,
+                        press: () => {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return AkunScreen(
+                                  id: widget.id,
+                                );
+                              },
+                            ),
+                          )
+                        },
+                      ),
+                      ProfileMenu(
                         text: "Daftar Member",
                         icon: FontAwesomeIcons.userFriends,
                         press: () => {
@@ -100,7 +116,7 @@ class _MenuAdminState extends State<MenuAdmin> {
                         text: "Tambah Member",
                         icon: FontAwesomeIcons.userPlus,
                         press: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {

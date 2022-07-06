@@ -1,4 +1,7 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:AAccounting/constants.dart';
+import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,6 +14,22 @@ class AkunDropdown extends StatefulWidget {
 }
 class _AkunDropdownState extends State<AkunDropdown> {
   String dropdownValue = 'Aktiva';
+
+  Future<List> tampilSemuaData() async {
+    final url = Uri.parse(myUrl().tampil_akun);
+    final respon = await http.post(url);
+
+    final hasil = jsonDecode(respon.body);
+
+    return hasil;
+  }
+
+  Future<Null> refreshDataAkun() async {
+    await Future.delayed(Duration(seconds: 3));
+    setState(() {
+      tampilSemuaData();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

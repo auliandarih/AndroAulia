@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 import 'package:AAccounting/Screens/admin/Home/event/dataevent.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
@@ -56,49 +57,14 @@ class _BodyState extends State<Body> {
     return ListView.builder(
         itemCount: dataHasil == null ? 0 : dataHasil.length,
         itemBuilder: (context, urutan) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DataEvent(
-                      list: dataHasil,
-                      index: urutan,
-                    );
-                  },
-                ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
-              child: Card(
-                elevation: 7,
-                shadowColor: Colors.grey[800],
-                child: Container(
-                  height: 120,
-                  color: Colors.grey[500]!.withOpacity(0.3),
-                  child: Column(
-                    children: <Widget>[
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 5, right: 5),
-                          child: Container(
-                            height: 110,
-                            child: Column(
-                              children: <Widget>[
-                                itemData(dataHasil[urutan]['nm_event']),
-                                itemData(dataHasil[urutan]['no_event']),
-                                itemData(dataHasil[urutan]['tgl_mulai'])
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+          return ListTile(
+            title: Center(child: Text(dataHasil[urutan]['nm_event'], style: TextStyle(fontSize: 22),),),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(dataHasil[urutan]['no_event'], style: TextStyle(fontSize: 15),),
+                Text(dataHasil[urutan]['tgl_mulai']),
+              ],
             ),
           );
         });

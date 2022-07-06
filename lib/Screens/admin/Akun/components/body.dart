@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:AAccounting/pallete.dart';
 import 'package:AAccounting/serverdata/api.dart';
+import 'package:AAccounting/serverdata/domain.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -64,7 +65,7 @@ class _BodyState extends State<Body> {
           SizedBox(
             height: 20,
           ),
-          AkunPic(),
+          AkunPic(urlFoto: Domain().domainku + data['foto'].toString()),
           SizedBox(
             height: 20,
           ),

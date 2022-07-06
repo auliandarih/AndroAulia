@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../pallete.dart';
 import 'components/body.dart';
 
 class SignUpScreen extends StatelessWidget {

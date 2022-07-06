@@ -1,3 +1,5 @@
+import 'package:AAccounting/constants.dart';
+import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,7 +7,12 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'background.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   final isiNoPengajuan = TextEditingController();
   final isiAkun = TextEditingController();
   final isiNama = TextEditingController();
@@ -17,7 +24,21 @@ class Body extends StatelessWidget {
   final isiJumlah = TextEditingController();
   final isiRemark = TextEditingController();
 
-  //Cek Data API
+  Future<List> tampilSemuaData() async {
+    final url = Uri.parse(myUrl().tampil_akun);
+    final respon = await http.post(url);
+
+    final hasil = jsonDecode(respon.body);
+
+    return hasil;
+  }
+
+  Future<Null> refreshDataEvent() async {
+    await Future.delayed(Duration(seconds: 3));
+    setState(() {
+      tampilSemuaData();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +57,22 @@ class Body extends StatelessWidget {
                 Column(
                   children: [
                     //Pilih Akun
-                    dropdown(context, "Pilih Akun", AkunDropdown()),
+                    dropdown(
+                      context,
+                      "Pilih Akun",
+                      ElevatedButton(
+                        onPressed: () => showModalBottomSheet(
+                          context: context,
+                          builder: (ctx) => _buildAkun(ctx),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          primary: kAppBar,
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 10),
+                        ),
+                        child: const Text('Pilih Akun'),
+                      ),
+                    ),
 
                     //Nama Transaksi
                     dropdown(context, "Perkiraan", TransaksiDropdown()),
@@ -46,10 +82,9 @@ class Body extends StatelessWidget {
                       context,
                       "Event",
                       HomeField(
-                        inputType: TextInputType.text,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiEvent
-                      ),
+                          inputType: TextInputType.text,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiEvent),
                     ),
 
                     //Deskripsi
@@ -57,10 +92,9 @@ class Body extends StatelessWidget {
                       context,
                       "Deskripsi",
                       HomeField(
-                        inputType: TextInputType.text,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiDeskripsi
-                      ),
+                          inputType: TextInputType.text,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiDeskripsi),
                     ),
 
                     //Tanggal
@@ -68,10 +102,9 @@ class Body extends StatelessWidget {
                       context,
                       "Tanggal",
                       HomeField(
-                        inputType: TextInputType.datetime,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiTanggal
-                      ),
+                          inputType: TextInputType.datetime,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiTanggal),
                     ),
 
                     //Harga
@@ -79,10 +112,9 @@ class Body extends StatelessWidget {
                       context,
                       "Harga",
                       HomeField(
-                        inputType: TextInputType.number,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiHarga
-                      ),
+                          inputType: TextInputType.number,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiHarga),
                     ),
 
                     //QTY
@@ -90,10 +122,9 @@ class Body extends StatelessWidget {
                       context,
                       "Qty",
                       HomeField(
-                        inputType: TextInputType.number,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiQty
-                      ),
+                          inputType: TextInputType.number,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiQty),
                     ),
 
                     //Jumlah Transaksi
@@ -101,10 +132,9 @@ class Body extends StatelessWidget {
                       context,
                       "Jumlah",
                       HomeField(
-                        inputType: TextInputType.number,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiJumlah
-                      ),
+                          inputType: TextInputType.number,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiJumlah),
                     ),
 
                     //Remark
@@ -112,10 +142,9 @@ class Body extends StatelessWidget {
                       context,
                       "Remark",
                       HomeField(
-                        inputType: TextInputType.text,
-                        inputAction: TextInputAction.next,
-                        textEditingController: isiRemark
-                      ),
+                          inputType: TextInputType.text,
+                          inputAction: TextInputAction.next,
+                          textEditingController: isiRemark),
                     ),
 
                     //Upload Referensi
@@ -222,6 +251,48 @@ class Body extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget desainTampilan(dataHasil) {
+    return ListView.builder(
+      itemCount: dataHasil == null ? 0 : dataHasil.length,
+      itemBuilder: (context, urutan) {
+        return ListTile(
+          hoverColor: Colors.black,
+          tileColor: kAppBar,
+          title: Center(
+            child: Text(
+              dataHasil[urutan]['nm_akun'], style: TextStyle(fontSize: 17, color: Colors.white),
+            ),
+          ),
+        );
+      }
+    );
+  }
+
+  Container _buildAkun(BuildContext context) {
+    return Container(
+      height: 300,
+      padding: const EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        border: Border.all(color: Colors.blue, width: 2.0),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: RefreshIndicator(
+        child: FutureBuilder<List>(
+          future: tampilSemuaData(),
+          builder: (context, tempData) {
+            if (tempData.hasError) print(tempData.error);
+            return tempData.hasData == true
+                ? desainTampilan(tempData.requireData)
+                : Center(
+                    child: CircularProgressIndicator(),
+                  );
+          },
+        ),
+        onRefresh: refreshDataEvent,
       ),
     );
   }

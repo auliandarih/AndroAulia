@@ -1,10 +1,14 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/member/Akun/components/akun_pic.dart';
 import 'package:AAccounting/pallete.dart';
 import 'package:AAccounting/serverdata/api.dart';
+import 'package:AAccounting/serverdata/domain.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'akun_pic.dart';
+import '../../../../constants.dart';
 
 class Body extends StatefulWidget {
   final String id;
@@ -64,7 +68,7 @@ class _BodyState extends State<Body> {
           SizedBox(
             height: 20,
           ),
-          AkunPic(),
+          AkunPic(urlFoto: Domain().domainku + data['foto'].toString()),
           SizedBox(
             height: 20,
           ),
@@ -87,12 +91,8 @@ class _BodyState extends State<Body> {
             child: Container(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: RoundedButton(
-                  buttonName: 'Edit Data',
-                  press: () {}
-                )
-              ),
+                  padding: const EdgeInsets.all(15.0),
+                  child: RoundedButton(buttonName: 'Edit Data', press: () {})),
             ),
           ),
         ],

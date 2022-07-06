@@ -5,20 +5,11 @@ import '../../../../pallete.dart';
 
 
 
-AppBar buildAppBarMenu(BuildContext context, String judul) {
+AppBar buildAppBarMenu(String judul) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
     backgroundColor: kAppBar,
-    leading: IconButton(
-      onPressed: () {
-        Navigator.pop(context);
-      },
-      icon: Icon(
-        Icons.arrow_back_ios,
-        color: kWhite,
-      ),
-    ),
     title: Text(
       judul,
       style: TextStyle(

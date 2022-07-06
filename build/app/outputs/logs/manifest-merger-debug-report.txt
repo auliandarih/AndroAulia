@@ -5,11 +5,14 @@ INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src
 INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml:1:1-30:12
 INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml:1:1-30:12
 MERGED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml:1:1-30:12
+MERGED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [:flutter_plugin_android_lifecycle] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:path_provider_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\50a5002d01a3949b30940bebdd3f0ffc\transformed\exifinterface-1.3.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\befd18ccaeeadfcd102c7d66fdadd114\transformed\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\1999ec5cfbcd670e45a7329bbd3010cc\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\9c9788ef6fea5c5367311b2534879376\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\d352a740c4a7999e0211689b3cd53bac\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\6b099d239d44b12fac32ffd17bec3825\transformed\core-1.1.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\ASUS\.gradle\caches\transforms-3\5629b20d9aa9423d5662a441641594f6\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
@@ -38,6 +41,8 @@ INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src
 		ADDED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml:1:11-69
 application
 ADDED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml:8:5-29:19
+MERGED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-17:19
+MERGED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:7:5-17:19
 MERGED from [androidx.core:core:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\6b099d239d44b12fac32ffd17bec3825\transformed\core-1.1.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.core:core:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\6b099d239d44b12fac32ffd17bec3825\transformed\core-1.1.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\221ba789f91250833043886128932c7c\transformed\versionedparcelable-1.1.0\AndroidManifest.xml:24:5-25:19
@@ -84,16 +89,22 @@ uses-sdk
 INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml
 INJECTED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\main\AndroidManifest.xml
+MERGED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:path_provider_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\50a5002d01a3949b30940bebdd3f0ffc\transformed\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.0] C:\Users\ASUS\.gradle\caches\transforms-3\50a5002d01a3949b30940bebdd3f0ffc\transformed\exifinterface-1.3.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\befd18ccaeeadfcd102c7d66fdadd114\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\befd18ccaeeadfcd102c7d66fdadd114\transformed\fragment-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\1999ec5cfbcd670e45a7329bbd3010cc\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\1999ec5cfbcd670e45a7329bbd3010cc\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\9c9788ef6fea5c5367311b2534879376\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\9c9788ef6fea5c5367311b2534879376\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\94100877aad6ca91c70b578f9abb759e\transformed\jetified-activity-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\d352a740c4a7999e0211689b3cd53bac\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\ASUS\.gradle\caches\transforms-3\d352a740c4a7999e0211689b3cd53bac\transformed\customview-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core:1.1.0] C:\Users\ASUS\.gradle\caches\transforms-3\6b099d239d44b12fac32ffd17bec3825\transformed\core-1.1.0\AndroidManifest.xml:20:5-22:41
@@ -124,3 +135,19 @@ uses-permission#android.permission.INTERNET
 ADDED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\debug\AndroidManifest.xml:6:5-66
 	android:name
 		ADDED from E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\android\app\src\debug\AndroidManifest.xml:6:22-64
+provider#io.flutter.plugins.imagepicker.ImagePickerFileProvider
+ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
+	android:grantUriPermissions
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-47
+	android:authorities
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-74
+	android:exported
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
+	android:name
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-82
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-15:75
+	android:resource
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:17-72
+	android:name
+		ADDED from [:image_picker_android] E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:17-67

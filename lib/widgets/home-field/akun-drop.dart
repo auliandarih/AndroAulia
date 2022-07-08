@@ -7,8 +7,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AkunDropdown extends StatefulWidget {
-  const AkunDropdown({Key? key}) : super(key: key);
-
   @override
   State<AkunDropdown> createState() => _AkunDropdownState();
 }
@@ -17,7 +15,7 @@ class _AkunDropdownState extends State<AkunDropdown> {
 
   Future<List> tampilSemuaData() async {
     final url = Uri.parse(myUrl().tampil_akun);
-    final respon = await http.post(url);
+    final respon = await http.get(url);
 
     final hasil = jsonDecode(respon.body);
 
@@ -29,6 +27,12 @@ class _AkunDropdownState extends State<AkunDropdown> {
     setState(() {
       tampilSemuaData();
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tampilSemuaData();
   }
 
   @override
@@ -48,23 +52,16 @@ class _AkunDropdownState extends State<AkunDropdown> {
 
         // dropdown below..
         child: Center(
-          child: DropdownButton<String>(
+          child: DropdownButton(
               isExpanded: true,
               value: dropdownValue,
-              icon: Icon(FontAwesomeIcons.angleDown, color: Colors.white,),
-              iconSize: 32,
-              underline: SizedBox(),
-              dropdownColor: kAppBar,
-              style: GoogleFonts.josefinSans(
-                color: Colors.white,
-                fontSize: 17,
-              ),
+              hint: Text('Pilih Akun'),
               onChanged: (String? newValue) {
                 setState(() {
                   dropdownValue = newValue!;
                 });
               },
-              items: <String>[
+              items: [
                 'Aktiva',
                 'Hutang',
                 'Beban',

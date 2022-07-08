@@ -87,14 +87,6 @@ class _BodyState extends State<Body> {
           namacolumn("No. HP", data['hp'].toString()),
           namacolumn("Jabatan", data['nm_jabatan'].toString()),
           namacolumn("Perusahaan", data['nm_perusahaan'].toString()),
-          Expanded(
-            child: Container(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: RoundedButton(buttonName: 'Edit Data', press: () {})),
-            ),
-          ),
         ],
       ),
     );

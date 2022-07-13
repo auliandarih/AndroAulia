@@ -14,6 +14,10 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(children: [
               LaporanMenu(
+                text: 'Data Pengajuan',
+                press: () {},
+              ),
+              LaporanMenu(
                 text: 'Jurnal Umum',
                 press: () {
                   Navigator.push(
@@ -21,10 +25,6 @@ class Body extends StatelessWidget {
                       MaterialPageRoute(
                           builder: (context) => const JurnalUmum()));
                 },
-              ),
-              LaporanMenu(
-                text: 'Laporan Laba Rugi',
-                press: () {},
               ),
               LaporanMenu(
                 text: 'Jurnal Penyesuaian',

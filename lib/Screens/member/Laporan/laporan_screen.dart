@@ -16,7 +16,7 @@ class LaporanScreen extends StatelessWidget {
           CustomBottomNavBar(selectedMenu: MenuState.laporan, id: id),
       backgroundColor: kAppBar,
       appBar: buildAppBar(),
-      body: Body(),
+      body: Body(id: id),
     );
   }
 

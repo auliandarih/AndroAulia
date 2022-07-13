@@ -7,7 +7,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'laporan_menu.dart';
 
 class Body extends StatefulWidget {
-  const Body({Key? key}) : super(key: key);
+  final String id;
+  const Body({Key? key, required this.id}) : super(key: key);
 
   @override
   State<Body> createState() => _BodyState();
@@ -15,8 +16,10 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Future<List> tampilSemuaData() async {
-    final url = Uri.parse(myUrl().tampil_pengajuan);
-    final respon = await http.post(url);
+    final url = Uri.parse(myUrl().tampil_peruser);
+    final respon = await http.post(url, body: {
+      'id_user' : widget.id
+    });
 
     final hasil = jsonDecode(respon.body);
 
@@ -76,21 +79,31 @@ class _BodyState extends State<Body> {
                     elevation: 5,
                     color: Colors.grey[500]!.withOpacity(0.3),
                     child: Container(
-                      height: 165, 
+                      height: 165,
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Column(
                           children: <Widget>[
                             Container(
                               alignment: Alignment.topRight,
-                              child: Text(dataHasil[urutan]['tgl'], style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
+                              child: Text(dataHasil[urutan]['tgl'],
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
                             ),
                             SizedBox(
                               height: 9,
                             ),
-                            Text(dataHasil[urutan]['nm_event'], style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold)),
-                            namaColumn("No Pengajuan", dataHasil[urutan]['no_pengajuan']),
-                            namaColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
+                            Text(dataHasil[urutan]['nm_event'],
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold)),
+                            namaColumn("No Pengajuan",
+                                dataHasil[urutan]['no_pengajuan']),
+                            namaColumn(
+                                "Deskripsi", dataHasil[urutan]['deskripsi']),
                             namaColumn("Status", dataHasil[urutan]['confirmed'])
                           ],
                         ),
@@ -103,36 +116,34 @@ class _BodyState extends State<Body> {
   Widget namaColumn(judul, isi) {
     return Padding(
       padding: const EdgeInsets.only(left: 5, right: 5, top: 7),
-      child: Row(
-        children: [
-          Container(
-            width: 150,
-            child: Text(
-              judul,
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Text(
-            ": ",
+      child: Row(children: [
+        Container(
+          width: 150,
+          child: Text(
+            judul,
             style: TextStyle(
-                fontSize: 20,
-                color: Colors.white,
+              fontSize: 20,
+              color: Colors.white,
             ),
           ),
-          Container(
-            child: Text(
-              isi,
-              style: TextStyle(
-                fontSize: 21,
-                color: Colors.white,
-              ),
+        ),
+        Text(
+          ": ",
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.white,
+          ),
+        ),
+        Container(
+          child: Text(
+            isi,
+            style: TextStyle(
+              fontSize: 21,
+              color: Colors.white,
             ),
           ),
-        ]
-      ),
+        ),
+      ]),
     );
   }
 

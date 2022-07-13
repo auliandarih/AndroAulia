@@ -1,5 +1,6 @@
 import 'package:AAccounting/Screens/admin/Home/event/tambah_event.dart';
 import 'package:AAccounting/components/custom_bottom_nav_admin.dart';
+import 'package:AAccounting/components/menus.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -16,9 +17,16 @@ class HomeAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar:
-          NavBarAdmin(id: id, selectedMenu: MenuState.homeadmin),
-      appBar: buildAppBar(context),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: kAppBar,
+        centerTitle: true,
+        title: Text(
+          "Data Event",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
+      ),
+      drawer: menuDrawers(id: id),
       body: Body(),
     );
   }

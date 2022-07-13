@@ -47,7 +47,6 @@ class _MenuAdminState extends State<MenuAdmin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavBarAdmin(selectedMenu: MenuState.profil, id: widget.id),
         backgroundColor: kAppBar,
         appBar: buildAppBar(),
         body: Center(
@@ -90,7 +89,7 @@ class _MenuAdminState extends State<MenuAdmin> {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return AkunScreen(
+                                return AkunAdmin(
                                   id: widget.id,
                                 );
                               },
@@ -135,20 +134,6 @@ class _MenuAdminState extends State<MenuAdmin> {
                         text: "Pengaturan",
                         icon: FontAwesomeIcons.slidersH,
                         press: () {},
-                      ),
-                      ProfileMenu(
-                        text: "Keluar",
-                        icon: FontAwesomeIcons.signOutAlt,
-                        press: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return LoginScreen();
-                              },
-                            ),
-                          );
-                        },
                       ),
                     ],
                   )

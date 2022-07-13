@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import 'components/body.dart';
 
-class AkunScreen extends StatelessWidget {
+class AkunAdmin extends StatelessWidget {
   final String id;
-  const AkunScreen({Key? key, required this.id}) : super(key: key);
+  const AkunAdmin({Key? key, required this.id}) : super(key: key);
 
   get kWhite => null;
  

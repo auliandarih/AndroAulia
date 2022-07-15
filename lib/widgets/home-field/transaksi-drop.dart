@@ -2,7 +2,6 @@ import 'package:AAccounting/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TransaksiDropdown extends StatefulWidget {
   const TransaksiDropdown({Key? key}) : super(key: key);
@@ -38,10 +37,7 @@ class _TransaksiDropdownState extends State<TransaksiDropdown> {
               iconSize: 32,
               underline: SizedBox(),
               dropdownColor: kAppBar,
-              style: GoogleFonts.josefinSans(
-                color: Colors.white,
-                fontSize: 17,
-              ),
+              
               onChanged: (String? newValue) {
                 setState(() {
                   dropdownValue = newValue!;

@@ -129,7 +129,7 @@ class Body extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) {
@@ -140,7 +140,7 @@ class Body extends StatelessWidget {
                         },
                         child: Text(
                           'Forgot Password',
-                          style: kBodyText,
+                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                       SizedBox(

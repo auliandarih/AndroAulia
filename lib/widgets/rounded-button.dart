@@ -17,8 +17,8 @@ class RoundedButton extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
-      height: size.height * 0.08,
-      width: size.width * 0.8,
+      height: size.height * 0.05,
+      width: size.width * 0.5,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(29),
         color: kBlue,
@@ -27,7 +27,7 @@ class RoundedButton extends StatelessWidget {
         onPressed: press,
         child: Text(
           buttonName,
-          style: kBodyText.copyWith(fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white),
         ),
       ),
     );

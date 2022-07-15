@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:AAccounting/Screens/admin/Home/event/dataevent.dart';
+import 'package:AAccounting/Screens/admin/Report/page/data_pengajuan.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +35,6 @@ class _BodyState extends State<Body> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundColor(),
         RefreshIndicator(
           child: FutureBuilder<List>(
             future: tampilSemuaData(),
@@ -63,7 +63,9 @@ class _BodyState extends State<Body> {
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return DataEvent(
+                    return DataPengajuan(
+                      event: dataHasil[urutan]['nm_event'].toString(),
+                      idevent: dataHasil[urutan]['id_event'].toString(),
                       list: dataHasil,
                       index: urutan,
                     );
@@ -75,38 +77,55 @@ class _BodyState extends State<Body> {
               padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
               child: Card(
                 elevation: 5,
-                color: Colors.grey[500]!.withOpacity(0.3),
+                color: Colors.white.withOpacity(0.9),
                 child: Container(
-                  height: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 7),
-                    child: Column(
-                      children: <Widget>[
-                        Text(dataHasil[urutan]['nm_event'], style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: Colors.white),),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(dataHasil[urutan]['no_event'], style: TextStyle(fontSize: 18, color: Colors.white),),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(dataHasil[urutan]['tgl_mulai'], style: TextStyle(fontSize: 18, color: Colors.white),),
-                            Text(' s/d ', style: TextStyle(fontSize: 18, color: Colors.white)),
-                            Text(dataHasil[urutan]['tgl_akhir'], style: TextStyle(fontSize: 18, color: Colors.white),),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                ),
+                    height: 100,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 7),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            dataHasil[urutan]['nm_event'],
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            dataHasil[urutan]['no_event'],
+                            style: TextStyle( color: Colors.black),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                dataHasil[urutan]['tgl_mulai'],
+                                style: TextStyle(
+                                     color: Colors.black),
+                              ),
+                              Text(' s/d ',
+                                  style: TextStyle(
+                                       color: Colors.black)),
+                              Text(
+                                dataHasil[urutan]['tgl_akhir'],
+                                style: TextStyle(
+                                     color: Colors.black),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    )),
               ),
             ),
-        );
-      }
-    );
+          );
+        });
   }
 
   // ListTile(

@@ -14,7 +14,6 @@ class LaporanScreen extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar:
           CustomBottomNavBar(selectedMenu: MenuState.laporan, id: id),
-      backgroundColor: kAppBar,
       appBar: buildAppBar(),
       body: Body(id: id),
     );

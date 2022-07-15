@@ -24,9 +24,8 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: kAppBar,
-      centerTitle: true,
       title: Text(
-        "Input Data",
+        "AAccounting",
         style: TextStyle(
           fontWeight: FontWeight.bold,
         ),

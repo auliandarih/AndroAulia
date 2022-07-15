@@ -76,7 +76,7 @@ class _BodyState extends State<Body> {
             data['nama'].toString(),
             style: TextStyle(
               fontSize: 25,
-              color: Colors.white,
+              color: kAppBar,
               fontWeight: FontWeight.bold,
             ),
           ),

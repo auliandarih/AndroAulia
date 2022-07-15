@@ -21,7 +21,7 @@ class ProfileMenu extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: TextButton(
         style: TextButton.styleFrom(
-          primary: Colors.white,
+          primary: Colors.black,
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -32,7 +32,7 @@ class ProfileMenu extends StatelessWidget {
           children: [
             Icon(
               icon,
-              color: kContentColorDarkTheme,
+              color: kAppBar,
               size: 28,
             ),
             SizedBox(width: 20),

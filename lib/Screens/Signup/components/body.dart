@@ -98,7 +98,7 @@ class Body extends StatelessWidget {
             elevation: 0,
             title: Text(
               'Daftar Akun',
-              style: kBodyText,
+              style: TextStyle(color: Colors.white),
             ),
             centerTitle: true,
           ),

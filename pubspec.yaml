@@ -25,7 +25,6 @@ dependencies:
   cupertino_icons: ^1.0.0
   font_awesome_flutter: ^9.2.0
   flutter_svg: ^0.23.0+1
-  google_fonts: ^2.1.0
   http: ^0.13.4
   introduction_screen: ^2.1.0
   image_picker: ^0.8.5+3

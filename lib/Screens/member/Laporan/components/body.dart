@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/member/Laporan/components/detail_pengajuan.dart';
 import 'package:AAccounting/widgets/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:AAccounting/serverdata/api.dart';
@@ -16,7 +17,7 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   Future<List> tampilSemuaData() async {
-    final url = Uri.parse(myUrl().tampil_peruser);
+    final url = Uri.parse(myUrl().tampil_pengajuanuser);
     final respon = await http.post(url, body: {
       'id_user' : widget.id
     });
@@ -27,7 +28,7 @@ class _BodyState extends State<Body> {
   }
 
   Future<Null> refreshDataEvent() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 2));
     setState(() {
       tampilSemuaData();
     });
@@ -56,61 +57,63 @@ class _BodyState extends State<Body> {
   }
 
   Widget desainTampilan(List dataHasil) {
-    return ListView.builder(
-        itemCount: dataHasil == null ? 0 : dataHasil.length,
-        itemBuilder: (context, urutan) {
-          return GestureDetector(
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) {
-                //       return DataEvent(
-                //         list: dataHasil,
-                //         index: urutan,
-                //       );
-                //     },
-                //   ),
-                // );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(top: 5),
-                child: Card(
-                    elevation: 5,
-                    color: Colors.grey[500]!.withOpacity(0.3),
-                    child: Container(
-                      height: 165,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 10),
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              alignment: Alignment.topRight,
-                              child: Text(dataHasil[urutan]['tgl'],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0,0,0,10),
+      child: ListView.builder(
+          itemCount: dataHasil == null ? 0 : dataHasil.length,
+          itemBuilder: (context, urutan) {
+            return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return DetailPengajuan(
+                          nope: dataHasil[urutan]['no_pengajuan'].toString(),
+                          event: dataHasil[urutan]['nm_event'].toString(),
+                        );
+                      },
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 5),
+                  child: Card(
+                      elevation: 5,
+                      color: Colors.grey[500]!.withOpacity(0.3),
+                      child: Container(
+                        height: 165,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10,5,10,0),
+                          child: Column(
+                            children: <Widget>[
+                              Container(
+                                alignment: Alignment.topRight,
+                                child: Text(dataHasil[urutan]['tgl'],
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              SizedBox(
+                                height: 9,
+                              ),
+                              Text(dataHasil[urutan]['nm_event'],
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.white,
+                                      fontSize: 17,
+                                      color: Colors.black,
                                       fontWeight: FontWeight.bold)),
-                            ),
-                            SizedBox(
-                              height: 9,
-                            ),
-                            Text(dataHasil[urutan]['nm_event'],
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold)),
-                            namaColumn("No Pengajuan",
-                                dataHasil[urutan]['no_pengajuan']),
-                            namaColumn(
-                                "Deskripsi", dataHasil[urutan]['deskripsi']),
-                            namaColumn("Status", dataHasil[urutan]['confirmed'])
-                          ],
+                              namaColumn("No Pengajuan",
+                                  dataHasil[urutan]['no_pengajuan']),
+                              namaColumn(
+                                  "Deskripsi", dataHasil[urutan]['deskripsi']),
+                              namaColumn("Status", dataHasil[urutan]['confirmed'])
+                            ],
+                          ),
                         ),
-                      ),
-                    )),
-              ));
-        });
+                      )),
+                ));
+          }),
+    );
   }
 
   Widget namaColumn(judul, isi) {
@@ -122,24 +125,21 @@ class _BodyState extends State<Body> {
           child: Text(
             judul,
             style: TextStyle(
-              fontSize: 20,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),
         Text(
           ": ",
           style: TextStyle(
-            fontSize: 20,
-            color: Colors.white,
+            color: Colors.black,
           ),
         ),
         Container(
           child: Text(
             isi,
             style: TextStyle(
-              fontSize: 21,
-              color: Colors.white,
+              color: Colors.black,
             ),
           ),
         ),

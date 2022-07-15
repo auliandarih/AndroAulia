@@ -1,7 +1,10 @@
 import 'package:AAccounting/Screens/Login/login_screen.dart';
+import 'package:AAccounting/Screens/Signup/signup_screen.dart';
 import 'package:AAccounting/Screens/admin/Akun/akun-screen.dart';
 import 'package:AAccounting/Screens/admin/Home/home_admin.dart';
+import 'package:AAccounting/Screens/admin/Menu/Daftar_Member/daftar_member.dart';
 import 'package:AAccounting/Screens/admin/Menu/menu_admin.dart';
+import 'package:AAccounting/Screens/admin/Report/page/data_pengajuan.dart';
 import 'package:AAccounting/Screens/admin/Report/report_admin.dart';
 import 'package:AAccounting/constants.dart';
 import 'package:flutter/material.dart';
@@ -106,18 +109,33 @@ class menuDrawers extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.payment,
+              leading: Icon(FontAwesomeIcons.userFriends,
                   size: _drawerIconSize, color: Colors.white),
               title: Text(
-                'Pembayaran',
+                'Daftar Member',
                 style:
                     TextStyle(fontSize: _drawerFontSize, color: Colors.white),
               ),
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => screenKosong()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => DaftarMember()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(FontAwesomeIcons.userPlus,
+                  size: _drawerIconSize, color: Colors.white),
+              title: Text(
+                'Tambah Member',
+                style:
+                    TextStyle(fontSize: _drawerFontSize, color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignUpScreen(id: id)),
+                );
               },
             ),
             Divider(

@@ -19,11 +19,11 @@ class ProfilPic extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: kSpacingUnit * 8,
-            backgroundColor: kAppBar,
+            backgroundColor: Colors.white,
             backgroundImage: AssetImage('assets/images/logo.PNG'),
           ),
           Positioned(
-            right: -16,
+            right: 0,
             bottom: 0,
             child: SizedBox(
               height: 35,
@@ -34,7 +34,7 @@ class ProfilPic extends StatelessWidget {
                     borderRadius: BorderRadius.circular(50),
                     side: BorderSide(color: Colors.white),
                   ),
-                  primary: Colors.white,
+                  primary: Colors.black,
                   backgroundColor: Color(0xFFF5F6F9),
                 ),
                 onPressed: () {},

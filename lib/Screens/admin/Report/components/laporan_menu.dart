@@ -1,3 +1,4 @@
+import 'package:AAccounting/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,7 +22,7 @@ class LaporanMenu extends StatelessWidget {
           padding: EdgeInsets.all(20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          backgroundColor: Colors.grey[500]!.withOpacity(0.3),
+          backgroundColor: Colors.grey[500]!.withOpacity(0.5),
         ),
         onPressed: press,
         child: Row(
@@ -31,12 +32,12 @@ class LaporanMenu extends StatelessWidget {
               child: Text(
                 text,
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.white,
+                  fontSize: 15,
+                  color: Colors.black,
                 ),
               ),
             ),
-            Icon(Icons.arrow_forward_ios),
+            Icon(Icons.arrow_forward_ios, color: kAppBar, size: 17,),
           ],
         ),
       ),

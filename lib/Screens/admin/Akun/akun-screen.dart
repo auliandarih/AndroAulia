@@ -11,7 +11,6 @@ class AkunAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xf0181818),
       appBar: buildAppBar(context),
       body: Body(id: id,),
     );

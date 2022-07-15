@@ -25,6 +25,26 @@ class HomeAdmin extends StatelessWidget {
           "Data Event",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
+        actions: [
+        TextButton.icon(
+          icon: Icon(FontAwesomeIcons.plus, color: Colors.white),
+          label: Text("Add Event",
+              style:
+                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return TambahEvent(
+                    id: id,
+                  );
+                },
+              ),
+            );
+          },
+        ),
+      ],
       ),
       drawer: menuDrawers(id: id),
       body: Body(),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../constants.dart';
 
 
@@ -20,10 +19,7 @@ class DescriptionTextWidget extends StatelessWidget {
     return Text(
       description,
       textAlign: TextAlign.center,
-      style: GoogleFonts.inter(
-        color: kTextColor,
-        fontSize: size.width * 0.038,
-      ),
+      
     );
   }
 }

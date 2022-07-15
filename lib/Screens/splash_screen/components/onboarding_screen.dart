@@ -5,7 +5,6 @@ import 'package:AAccounting/widgets/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../constants.dart';
 
 
@@ -105,10 +104,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       },
                       child: Text(
                         'Skip',
-                        style: GoogleFonts.josefinSans(
-                          color: kIconColor,
-                          fontSize: size.width * 0.04,
-                        ),
                       ),
                     ),
                     Row(

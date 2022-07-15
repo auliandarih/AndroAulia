@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:AAccounting/constants.dart';
 import 'package:AAccounting/pallete.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/serverdata/domain.dart';
@@ -60,6 +61,7 @@ class _BodyState extends State<Body> {
   Widget designAkun(data) {
     Size size = MediaQuery.of(context).size;
     return Container(
+      color: Colors.grey[300]!.withOpacity(0.3),
       child: Column(
         children: [
           SizedBox(
@@ -72,8 +74,8 @@ class _BodyState extends State<Body> {
           Text(
             data['nama'].toString(),
             style: TextStyle(
-              fontSize: 25,
-              color: Colors.white,
+              fontSize: 20,
+              color: kAppBar,
               fontWeight: FontWeight.bold,
             ),
           ),

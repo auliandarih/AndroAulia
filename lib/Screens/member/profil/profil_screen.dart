@@ -45,7 +45,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CustomBottomNavBar(selectedMenu: MenuState.profil, id: widget.id),
-        backgroundColor: kAppBar,
         appBar: buildAppBar(),
         body: Center(
           child: Container(
@@ -140,7 +139,7 @@ class _ProfilScreenState extends State<ProfilScreen> {
               isi,
               style: TextStyle(
                 fontSize: 30,
-                color: Colors.white,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),

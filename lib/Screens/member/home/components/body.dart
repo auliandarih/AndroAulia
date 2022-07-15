@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'dart:convert';
+import 'background.dart';
 
 class Body extends StatefulWidget {
   final String id;
@@ -35,46 +36,61 @@ class _BodyState extends State<Body> {
   String TanggalChanged1 = '';
   String TanggalValidate1 = '';
 
-  // String getText() {
-  //   if (date == null) {
-  //     return 'Select Date';
-  //   } else {
-  //     return DateFormat('yyyy/MM/dd').format(date);
-  //     // return '${date.month}/${date.day}/${date.year}';
-  //   }
-  // }
+  String? selectedAkun;
 
-  // Future pickDate(BuildContext context) async {
-  //   final initialDate = DateTime.now();
-  //   final newDate = await showDatePicker(
-  //     context: context,
-  //     initialDate: date ?? initialDate,
-  //     firstDate: DateTime(DateTime.now().year - 5),
-  //     lastDate: DateTime(DateTime.now().year + 5),
-  //   );
+  List data = [];
 
-  //   if (newDate == null) return;
+  Future tampilSemuaData() async {
+    var url = Uri.parse(myUrl().tampil_akun);
+    var respon = await http.get(url);
 
-  //   setState(() => date = newDate);
-  // }
+    var hasil = jsonDecode(respon.body);
 
-  Future<List> tampilSemuaData() async {
-    final url = Uri.parse(myUrl().tampil_akun);
-    final respon = await http.post(url);
-
-    final hasil = jsonDecode(respon.body);
-
-    return hasil;
-  }
-
-  Future<Null> refreshDataEvent() async {
-    await Future.delayed(Duration(seconds: 3));
     setState(() {
-      tampilSemuaData();
+      data = hasil;
     });
+    print(hasil);
   }
 
-  
+  String? selectedPerkiraan;
+
+  List dataPerkiraan = [];
+
+  Future tampilPerkiraan() async {
+    var url = Uri.parse(myUrl().tampil_perkiraan);
+    var respon = await http.get(url);
+
+    var hasil = jsonDecode(respon.body);
+
+    setState(() {
+      dataPerkiraan = hasil;
+    });
+    print(hasil);
+  }
+
+  String? selectedEvent;
+
+  List dataEvent = [];
+
+  Future tampilEvent() async {
+    var url = Uri.parse(myUrl().tampil_event);
+    var respon = await http.get(url);
+
+    var hasil = jsonDecode(respon.body);
+
+    setState(() {
+      dataEvent = hasil;
+    });
+    print(hasil);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tampilSemuaData();
+    tampilPerkiraan();
+    tampilEvent();
+  }
 
   void daftar() async {
     var jumlah = int.parse(isiHarga.text) * int.parse(isiQty.text);
@@ -82,9 +98,9 @@ class _BodyState extends State<Body> {
     var respon = await http.post(url, body: {
       'no_pengajuan': isiNoPengajuan.text,
       'id_user': widget.id,
-      'id_event': isiEvent.text,
-      'no_akun': isiAkun.text,
-      'no_perkiraan': isiPerkiraan.text,
+      'id_event': selectedEvent,
+      'no_akun': selectedAkun,
+      'no_perkiraan': selectedPerkiraan,
       'deskripsi': isiDeskripsi.text,
       'tgl': isiTanggalSave.text,
       'harga': isiHarga.text,
@@ -153,7 +169,7 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        BackgroundColor(),
+        // BackgroundColor(),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
@@ -164,9 +180,19 @@ class _BodyState extends State<Body> {
                 ),
                 Column(
                   children: [
-                    boxDaftar("No Event", isiEvent),
-                    boxDaftar("No Akun", isiAkun),
-                    boxDaftar("No Perkiraan", isiPerkiraan),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      child: Container(
+                        child: Text(
+                          "Input Data Pengajuan",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    boxDaftar("No Pengajuan", isiNoPengajuan),
+                    dropEvent(),
+                    dropAkun(),
+                    dropPerkiraan(),
                     boxDaftar("Deskripsi", isiDeskripsi),
                     tanggal(),
                     boxDaftar("Harga", isiHarga),
@@ -176,7 +202,7 @@ class _BodyState extends State<Body> {
                         color: Colors.green,
                         child: Text(
                           "Submit",
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(),
                         ),
                         onPressed: daftar),
                   ],
@@ -191,16 +217,16 @@ class _BodyState extends State<Body> {
 
   Widget boxDaftar(String txttabel, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: TextField(
         controller: controller,
-        style: TextStyle(color: Colors.white),
+        style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
             label: Text(txttabel.toUpperCase(),
-                style: TextStyle(color: Colors.white)),
+                style: TextStyle(color: Colors.black)),
             border: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.white))),
+                borderSide: BorderSide(width: 2, color: Colors.black))),
       ),
     );
   }
@@ -210,10 +236,12 @@ class _BodyState extends State<Body> {
       padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
       child: DateTimePicker(
         decoration: InputDecoration(
-            icon: Icon(Icons.event, color: Colors.white),
+            icon: Icon(Icons.event, color: Colors.black),
             labelText: 'Tanggal'.toUpperCase(),
-            labelStyle: TextStyle(color: Colors.white)),
-        style: TextStyle(color: Colors.white),
+            labelStyle: TextStyle(color: Colors.black)),
+        style: TextStyle(
+          color: Colors.black,
+        ),
         dateMask: 'yyyy-MM-dd',
         controller: isiTanggalSave,
         //initialValue: _initialValue,
@@ -225,6 +253,129 @@ class _BodyState extends State<Body> {
           return null;
         },
         onSaved: (val) => setState(() => TanggalSave1 = val ?? ''),
+      ),
+    );
+  }
+
+  Widget dropAkun() {
+    Size size = MediaQuery.of(context).size;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        height: size.height * 0.08,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        // decoration: BoxDecoration(
+        //   color: Colors.grey[500]!.withOpacity(0.5),
+        //   borderRadius: BorderRadius.circular(16)
+        // ),
+
+        // dropdown below..
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: DropdownButton<String>(
+                isExpanded: true,
+                value: selectedAkun,
+                hint: Text('Pilih Akun'.toUpperCase(),
+                    style: TextStyle(color: Colors.black)),
+                items: data.map((list) {
+                  return DropdownMenuItem(
+                    child: Text(list['nm_akun'],
+                        style: TextStyle(color: Colors.black)),
+                    value: list['no_akun'].toString(),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    selectedAkun = val;
+                  });
+                }),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget dropPerkiraan() {
+    Size size = MediaQuery.of(context).size;
+    String selectedPerkiraanBefore = '';
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        height: size.height * 0.08,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        // decoration: BoxDecoration(
+        //   color: Colors.grey[500]!.withOpacity(0.5),
+        //   borderRadius: BorderRadius.circular(16)
+        // ),
+
+        // dropdown below..
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: Theme(
+              data: Theme.of(context)
+                  .copyWith(canvasColor: kAppBar.withOpacity(0.5)),
+              child: DropdownButton<String>(
+                  isExpanded: true,
+                  value: selectedPerkiraan,
+                  hint: Text('Pilih Perkiraan'.toUpperCase(),
+                      style: TextStyle(color: Colors.black)),
+                  items: data.map((list) {
+                    return DropdownMenuItem(
+                      child: Text(list['nm_perkiraan'],
+                          style: TextStyle(color: Colors.black)),
+                      value: list['no_perkiraan'].toString(),
+                    );
+                  }).toList(),
+                  onChanged: (val) {
+                    setState(() {
+                      selectedAkun = val;
+                    });
+                  }),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget dropEvent() {
+    Size size = MediaQuery.of(context).size;
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        height: size.height * 0.08,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        // decoration: BoxDecoration(
+        //   color: Colors.grey[500]!.withOpacity(0.5),
+        //   borderRadius: BorderRadius.circular(16)
+        // ),
+
+        // dropdown below..
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: DropdownButton<String>(
+                isExpanded: true,
+                value: selectedEvent,
+                hint: Text('Pilih Event'.toUpperCase(),
+                    style: TextStyle(color: Colors.black)),
+                items: dataEvent.map((list) {
+                  return DropdownMenuItem(
+                    child: Text(list['nm_event'],
+                        style: TextStyle(color: Colors.black)),
+                    value: list['id_event'].toString(),
+                  );
+                }).toList(),
+                onChanged: (val) {
+                  setState(() {
+                    selectedEvent = val;
+                  });
+                }),
+          ),
+        ),
       ),
     );
   }

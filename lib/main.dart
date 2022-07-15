@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'Screens/Login/login_screen.dart';
 import 'Screens/splash_screen/splash_page.dart';
 import 'constants.dart';
@@ -21,8 +20,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
-        textTheme:
-        GoogleFonts.josefinSansTextTheme(Theme.of(context).textTheme),
+        
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),

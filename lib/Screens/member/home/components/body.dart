@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
+import 'package:snippet_coder_utils/FormHelper.dart';
 import 'dart:convert';
 import 'background.dart';
 
@@ -36,38 +37,60 @@ class _BodyState extends State<Body> {
   String TanggalChanged1 = '';
   String TanggalValidate1 = '';
 
+  List<String> dataAkun = [
+    'Kas',
+    'Hutang',
+    'Beban',
+    'Pendapatan',
+    'Modal',
+  ];
+  List<String> dataPerkiraan1 = [
+    'Kas',
+    'Perlengkapan Kantor',
+    'Perlengkapan Kantor',
+    'Akumulasi Penyusutan Peralatan Kantor'
+  ];
+  List<String> dataPerkiraan2 = ['Hutang Modal', 'Hutang Usaha'];
+  List<String> dataPerkiraan3 = [
+    'Beban Notaris',
+    'Beban ATK',
+    'Beban Perjalanan Dinas & Service Client',
+    'Beban Sound System',
+    'Beban Kantin',
+    'Beban Event',
+    'Beban Kendaraan Bermotor',
+    'Beban Utilitas Kantor',
+    'Beban Gaji',
+    'Beban ADM Bank',
+    'Beban Penyusutan Peralatan Kantor',
+    'Beban Ekspedisi',
+    'Beban Pajak',
+  ];
+  List<String> dataPerkiraan4 = [
+    'Pendapatan Sound System',
+    'Pendapatan Event',
+    'Pendapatan Bank',
+    'Pendapatan Lainnya'
+  ];
+  List<String> dataPerkiraan5 = ['Modal Kerja', 'Modal Investasi Peralatan'];
+  List<String> perkiraan = [];
+
   String? selectedAkun;
+  String? selectedPerkiraan;
 
-  List data = [];
-
-  Future tampilSemuaData() async {
+  Future tampilAkun() async {
     var url = Uri.parse(myUrl().tampil_akun);
     var respon = await http.get(url);
 
     var hasil = jsonDecode(respon.body);
 
     setState(() {
-      data = hasil;
+      dataAkun = hasil;
     });
     print(hasil);
   }
 
-  String? selectedPerkiraan;
-
-  List dataPerkiraan = [];
-
-  Future tampilPerkiraan() async {
-    var url = Uri.parse(myUrl().tampil_perkiraan);
-    var respon = await http.get(url);
-
-    var hasil = jsonDecode(respon.body);
-
-    setState(() {
-      dataPerkiraan = hasil;
-    });
-    print(hasil);
-  }
-
+  // Panggil Event
   String? selectedEvent;
 
   List dataEvent = [];
@@ -87,8 +110,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    tampilSemuaData();
-    tampilPerkiraan();
+
     tampilEvent();
   }
 
@@ -99,8 +121,8 @@ class _BodyState extends State<Body> {
       'no_pengajuan': isiNoPengajuan.text,
       'id_user': widget.id,
       'id_event': selectedEvent,
-      'no_akun': selectedAkun,
-      'no_perkiraan': selectedPerkiraan,
+      'akun': selectedAkun,
+      'perkiraan': selectedPerkiraan,
       'deskripsi': isiDeskripsi.text,
       'tgl': isiTanggalSave.text,
       'harga': isiHarga.text,
@@ -167,51 +189,56 @@ class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        // BackgroundColor(),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Column(
+    return SafeArea(
+      child: Stack(
+        children: [
+          // BackgroundColor(),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+            child: Scaffold(
+              backgroundColor: Colors.transparent,
+              body: SingleChildScrollView(
+                child: Column(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
-                      child: Container(
-                        child: Text(
-                          "Input Data Pengajuan",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
+                    SizedBox(
+                      height: 10,
                     ),
-                    boxDaftar("No Pengajuan", isiNoPengajuan),
-                    dropEvent(),
-                    dropAkun(),
-                    dropPerkiraan(),
-                    boxDaftar("Deskripsi", isiDeskripsi),
-                    tanggal(),
-                    boxDaftar("Harga", isiHarga),
-                    boxDaftar("QTY", isiQty),
-                    boxDaftar("Remark", isiRemark),
-                    MaterialButton(
-                        color: Colors.green,
-                        child: Text(
-                          "Submit",
-                          style: TextStyle(),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
+                          child: Container(
+                            child: Text(
+                              "Input Data Pengajuan",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
                         ),
-                        onPressed: daftar),
+                        boxDaftar("No Pengajuan", isiNoPengajuan),
+                        dropEvent(),
+                        dropAkun(),
+                        dropPerkiraan(),
+                        boxDaftar("Deskripsi", isiDeskripsi),
+                        tanggal(),
+                        boxDaftar("Harga", isiHarga),
+                        boxDaftar("QTY", isiQty),
+                        boxDaftar("Remark", isiRemark),
+                        MaterialButton(
+                            color: Colors.green,
+                            child: Text(
+                              "Submit",
+                              style: TextStyle(),
+                            ),
+                            onPressed: daftar),
+                      ],
+                    )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 
@@ -259,37 +286,47 @@ class _BodyState extends State<Body> {
 
   Widget dropAkun() {
     Size size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        height: size.height * 0.08,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        // decoration: BoxDecoration(
-        //   color: Colors.grey[500]!.withOpacity(0.5),
-        //   borderRadius: BorderRadius.circular(16)
-        // ),
+    return Container(
+      height: size.height * 0.08,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      // decoration: BoxDecoration(
+      //   color: Colors.grey[500]!.withOpacity(0.5),
+      //   borderRadius: BorderRadius.circular(16)
+      // ),
 
-        // dropdown below..
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: DropdownButton<String>(
-                isExpanded: true,
-                value: selectedAkun,
-                hint: Text('Pilih Akun'.toUpperCase(),
-                    style: TextStyle(color: Colors.black)),
-                items: data.map((list) {
-                  return DropdownMenuItem(
-                    child: Text(list['nm_akun'],
-                        style: TextStyle(color: Colors.black)),
-                    value: list['no_akun'].toString(),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  setState(() {
-                    selectedAkun = val;
-                  });
-                }),
+      // dropdown below..
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: DropdownButton<String>(
+            hint: Text('Pilih Akun'),
+            value: selectedAkun,
+            isExpanded: true,
+            items: dataAkun.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (dataAkun) {
+              if (dataAkun == 'Kas') {
+                perkiraan = dataPerkiraan1;
+              } else if (dataAkun == 'Hutang') {
+                perkiraan = dataPerkiraan2;
+              } else if (dataAkun == 'Beban') {
+                perkiraan = dataPerkiraan3;
+              } else if (dataAkun == 'Pendapatan') {
+                perkiraan = dataPerkiraan4;
+              } else if (dataAkun == 'Modal') {
+                perkiraan = dataPerkiraan5;
+              } else {
+                perkiraan = [];
+              }
+              setState(() {
+                selectedPerkiraan = null;
+                selectedAkun = dataAkun;
+              });
+            },
           ),
         ),
       ),
@@ -298,83 +335,69 @@ class _BodyState extends State<Body> {
 
   Widget dropPerkiraan() {
     Size size = MediaQuery.of(context).size;
-    String selectedPerkiraanBefore = '';
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        height: size.height * 0.08,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        // decoration: BoxDecoration(
-        //   color: Colors.grey[500]!.withOpacity(0.5),
-        //   borderRadius: BorderRadius.circular(16)
-        // ),
+    return Container(
+      height: size.height * 0.08,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      // decoration: BoxDecoration(
+      //   color: Colors.grey[500]!.withOpacity(0.5),
+      //   borderRadius: BorderRadius.circular(16)
+      // ),
 
-        // dropdown below..
-        child: Center(
-          child: Padding(
+      // dropdown below..
+      child: Center(
+        child: Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: Theme(
-              data: Theme.of(context)
-                  .copyWith(canvasColor: kAppBar.withOpacity(0.5)),
-              child: DropdownButton<String>(
-                  isExpanded: true,
-                  value: selectedPerkiraan,
-                  hint: Text('Pilih Perkiraan'.toUpperCase(),
-                      style: TextStyle(color: Colors.black)),
-                  items: data.map((list) {
-                    return DropdownMenuItem(
-                      child: Text(list['nm_perkiraan'],
-                          style: TextStyle(color: Colors.black)),
-                      value: list['no_perkiraan'].toString(),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    setState(() {
-                      selectedAkun = val;
-                    });
-                  }),
-            ),
-          ),
-        ),
+            child: DropdownButton<String>(
+                hint: Text('Pilih Perkiraan'),
+                value: selectedPerkiraan,
+                isExpanded: true,
+                items: perkiraan.map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (perkiraan) {
+                  setState(() {
+                    selectedPerkiraan = perkiraan;
+                  });
+                },
+              ),),
       ),
     );
   }
 
   Widget dropEvent() {
     Size size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.08,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      // decoration: BoxDecoration(
+      //   color: Colors.grey[500]!.withOpacity(0.5),
+      //   borderRadius: BorderRadius.circular(16)
+      // ),
 
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        height: size.height * 0.08,
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        // decoration: BoxDecoration(
-        //   color: Colors.grey[500]!.withOpacity(0.5),
-        //   borderRadius: BorderRadius.circular(16)
-        // ),
-
-        // dropdown below..
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: DropdownButton<String>(
-                isExpanded: true,
-                value: selectedEvent,
-                hint: Text('Pilih Event'.toUpperCase(),
-                    style: TextStyle(color: Colors.black)),
-                items: dataEvent.map((list) {
-                  return DropdownMenuItem(
-                    child: Text(list['nm_event'],
-                        style: TextStyle(color: Colors.black)),
-                    value: list['id_event'].toString(),
-                  );
-                }).toList(),
-                onChanged: (val) {
-                  setState(() {
-                    selectedEvent = val;
-                  });
-                }),
-          ),
+      // dropdown below..
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: DropdownButton<String>(
+              isExpanded: true,
+              value: selectedEvent,
+              hint: Text('Pilih Event',
+                  style: TextStyle(color: Colors.black)),
+              items: dataEvent.map((list) {
+                return DropdownMenuItem(
+                  child: Text(list['nm_event'],
+                      style: TextStyle(color: Colors.black)),
+                  value: list['id_event'].toString(),
+                );
+              }).toList(),
+              onChanged: (val) {
+                setState(() {
+                  selectedEvent = val;
+                });
+              }),
         ),
       ),
     );

@@ -19,19 +19,19 @@ class AkunAdmin extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: kAppBar,
+      backgroundColor: Colors.yellow[800],
       leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
               },
               icon: Icon(
                 Icons.arrow_back_ios,
-                color: kWhite,
+                color: Colors.black,
               ),
             ),
       title: Text(
         "My Account",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

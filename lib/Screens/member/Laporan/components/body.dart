@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'laporan_menu.dart';
 
 class Body extends StatefulWidget {
@@ -18,9 +19,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   Future<List> tampilSemuaData() async {
     final url = Uri.parse(myUrl().tampil_pengajuanuser);
-    final respon = await http.post(url, body: {
-      'id_user' : widget.id
-    });
+    final respon = await http.post(url, body: {'id_user': widget.id});
 
     final hasil = jsonDecode(respon.body);
 
@@ -58,67 +57,84 @@ class _BodyState extends State<Body> {
 
   Widget desainTampilan(List dataHasil) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0,0,0,10),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
       child: ListView.builder(
           itemCount: dataHasil == null ? 0 : dataHasil.length,
           itemBuilder: (context, urutan) {
-            return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return DetailPengajuan(
-                          nope: dataHasil[urutan]['no_pengajuan'].toString(),
-                          event: dataHasil[urutan]['nm_event'].toString(),
-                        );
-                      },
-                    ),
-                  );
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Card(
-                      elevation: 5,
-                      color: Colors.grey[500]!.withOpacity(0.3),
-                      child: Container(
-                        height: 165,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10,5,10,0),
-                          child: Column(
-                            children: <Widget>[
-                              Container(
-                                alignment: Alignment.topRight,
-                                child: Text(dataHasil[urutan]['tgl'],
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold)),
-                              ),
-                              SizedBox(
-                                height: 9,
-                              ),
-                              Text(dataHasil[urutan]['nm_event'],
-                                  style: TextStyle(
-                                      fontSize: 17,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                              namaColumn("No Pengajuan",
-                                  dataHasil[urutan]['no_pengajuan']),
-                              namaColumn(
-                                  "Deskripsi", dataHasil[urutan]['deskripsi']),
-                              namaColumn("Status", dataHasil[urutan]['confirmed'])
-                            ],
-                          ),
-                        ),
-                      )),
-                ));
+            return Padding(
+              padding: const EdgeInsets.only(top: 5),
+              child: Card(
+                  elevation: 5,
+                  child: Column(
+                    children: <Widget>[
+                      Container(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                            DateFormat.yMd().format(
+                                DateTime.parse(dataHasil[urutan]['tgl'])),
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                      SizedBox(
+                        height: 9,
+                      ),
+                      Text(dataHasil[urutan]['nm_event'],
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold)),
+                      namaColumn(
+                          "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
+                      namaColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
+                      namaColumn("Status", dataHasil[urutan]['confirmed']),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        color: Colors.blue[100],
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return DetailPengajuan(
+                                      nope: dataHasil[urutan]['no_pengajuan']
+                                          .toString(),
+                                      event: dataHasil[urutan]['nm_event']
+                                          .toString(),
+                                    );
+                                  },
+                                ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Lihat Detail",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 14,
+                                  color: Colors.black,
+                                )
+                              ],
+                            )),
+                      ),
+                    ],
+                  )),
+            );
           }),
     );
   }
 
   Widget namaColumn(judul, isi) {
     return Padding(
-      padding: const EdgeInsets.only(left: 5, right: 5, top: 7),
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 7),
       child: Row(children: [
         Container(
           width: 150,

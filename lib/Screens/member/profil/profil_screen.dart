@@ -154,10 +154,10 @@ AppBar buildAppBar() {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: kAppBar,
+    backgroundColor: Colors.yellow[800],
     title: Text(
       "PROFIL",
-      style: TextStyle(fontWeight: FontWeight.bold),
+      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black,),
     ),
   );
 }

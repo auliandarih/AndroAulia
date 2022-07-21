@@ -218,6 +218,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "snippet_coder_utils",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/snippet_coder_utils-1.0.12",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "source_span",
       "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1",
       "packageUri": "lib/",
@@ -278,7 +284,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-07-14T12:52:50.869654Z",
+  "generated": "2022-07-15T10:02:26.721652Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }

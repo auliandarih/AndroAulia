@@ -10,7 +10,7 @@ class ReportAdmin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar("Laporan"),
+      appBar: buildAppBar(context, "Laporan"),
       body: Body(),
     );
   }

@@ -23,9 +23,16 @@ class Body extends StatelessWidget {
     var hasil = jsonDecode(respon.body);
     bool error = hasil['error'];
     String pesan = hasil['message'];
-    String login = hasil['user']['id_user'].toString();
+    
 
-    if (error == false) {
+    if (error == true) {
+      showAlertDialog(context, "Login Gagal",
+          "Username atau Password Salah, Silahkan Login Kembali !");
+      //Panggil Menu
+
+    } else {
+      
+      String login = hasil['user']['id_user'].toString();
       if (hasil['user']['level'] == "admin") {
         Navigator.pushReplacement(
           context,
@@ -49,11 +56,6 @@ class Body extends StatelessWidget {
           ),
         );
       }
-      //Panggil Menu
-
-    } else {
-      showAlertDialog(context, "Login Gagal",
-          "Username atau Password Salah, Silahkan Login Kembali !");
     }
   }
 

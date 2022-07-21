@@ -20,7 +20,7 @@ class AkunPic extends StatelessWidget {
               backgroundColor: kAppBar,
               backgroundImage: NetworkImage(urlFoto)),
           Positioned(
-            right: -16,
+            right: 0,
             bottom: 0,
             child: SizedBox(
               height: 35,

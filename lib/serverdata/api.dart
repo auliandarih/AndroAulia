@@ -27,4 +27,10 @@ class myUrl{
   final String tampil_pengajuanuser   = Domain().domainku + "pengajuan_tampiluser.php";
   final String tampil_pengajuanevent  = Domain().domainku + "pengajuan_tampil_perevent.php";
   final String tampil_perpengajuan    = Domain().domainku + "pengajuan_tampil_perno.php";
+  final String tampil_pengajuan_belum = Domain().domainku + "pengajuan_tampil_belum.php";
+  final String tampil_pengajuan_sudah = Domain().domainku + "pengajuan_tampil_sudah.php";
+  final String konfirmasi_pengajuan   = Domain().domainku + "pengajuan_konfirmasi.php";
+
+  //JABATAN
+  final String tampil_jabatan    = Domain().domainku + "jabatan_tampil.php";
 }

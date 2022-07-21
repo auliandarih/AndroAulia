@@ -23,11 +23,12 @@ class HomeScreen extends StatelessWidget {
   AppBar buildAppBar() {
     return AppBar(
       automaticallyImplyLeading: false,
-      backgroundColor: kAppBar,
+      backgroundColor: Colors.yellow[800],
       title: Text(
         "AAccounting",
         style: TextStyle(
           fontWeight: FontWeight.bold,
+          color: Colors.black
         ),
       ),
     );

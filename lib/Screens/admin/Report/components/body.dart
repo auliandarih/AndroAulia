@@ -1,4 +1,4 @@
-import 'package:AAccounting/Screens/admin/Report/page/jurnalUmum.dart';
+import 'package:AAccounting/Screens/admin/page/jurnalUmum.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'laporan_menu.dart';

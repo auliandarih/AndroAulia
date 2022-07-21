@@ -9,9 +9,16 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../../../pallete.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final String id;
 
+  Body({Key? key, required this.id}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   final isiEmail = TextEditingController();
   final isiNama = TextEditingController();
   final isiPassword = TextEditingController();
@@ -20,7 +27,13 @@ class Body extends StatelessWidget {
   final isiPerusahaan = TextEditingController();
   final isiLevel = TextEditingController();
 
-  Body({Key? key, required this.id}) : super(key: key);
+  List<String> level = [
+    'admin',
+    'member',
+  ];
+
+  String? selectedLevel;
+  
 
   void daftar(BuildContext context) async {
     var url = Uri.parse(myUrl().user_tambah);
@@ -46,7 +59,9 @@ class Body extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) {
-            return MenuAdmin(id: id,);
+            return MenuAdmin(
+              id: widget.id,
+            );
           },
         ),
       );
@@ -58,7 +73,6 @@ class Body extends StatelessWidget {
     }
   }
 
-  //Metode tampil Pesan Error/Informasi
   showAlertDialog(BuildContext context, String judul, String pesan) {
     // set up the button
     Widget okButton = FlatButton(
@@ -84,6 +98,26 @@ class Body extends StatelessWidget {
         return alert;
       },
     );
+  }
+
+  List dataJabatan = [];
+  String? selectedJabatan;
+
+  Future tampilJabatan() async {
+    var url = Uri.parse(myUrl().tampil_jabatan);
+    var respon = await http.post(url);
+
+    var hasil = jsonDecode(respon.body);
+
+    setState(() {
+      dataJabatan = hasil;
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+
+    tampilJabatan();
   }
 
   @override
@@ -159,38 +193,102 @@ class Body extends StatelessWidget {
                     ),
                     TextInputField(
                       textEditingController: isiNama,
-                      icon: FontAwesomeIcons.userAlt,
-                      hint: 'Your Name',
+                      icon: FontAwesomeIcons.addressCard,
+                      hint: 'Nama Lengkap',
                       inputType: TextInputType.name,
                       inputAction: TextInputAction.next,
                     ),
                     TextInputField(
                       textEditingController: isiPhone,
                       icon: FontAwesomeIcons.phoneAlt,
-                      hint: 'Phone Number',
+                      hint: 'No. HP',
                       inputType: TextInputType.number,
                       inputAction: TextInputAction.next,
                     ),
-                    TextInputField(
-                      textEditingController: isiJabatan,
-                      icon: FontAwesomeIcons.envelope,
-                      hint: 'Jabatan',
-                      inputType: TextInputType.text,
-                      inputAction: TextInputAction.next,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                      child: Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.8,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[500]!.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: DropdownButton<String>(
+                          icon: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            child: Icon(
+                              FontAwesomeIcons.angleDown,
+                              color: Colors.white,
+                            ),
+                          ),
+                          hint: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text('Pilih Jabatan',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          value: selectedJabatan,
+                          isExpanded: true,
+                          items: dataJabatan.map((list) {
+                            return DropdownMenuItem(
+                              child: Text(list['nm_jabatan']),
+                              value: list['id_jabatan'].toString(),
+                            );
+                          }).toList(),
+                          onChanged: (val) {
+                            setState(() {
+                              selectedJabatan = val;
+                            });
+                          },
+                        ),
+                      ),
                     ),
                     TextInputField(
                       textEditingController: isiPerusahaan,
-                      icon: FontAwesomeIcons.solidBuilding,
-                      hint: 'Your Company Name',
+                      icon: FontAwesomeIcons.industry,
+                      hint: 'Perusahaan',
                       inputType: TextInputType.name,
                       inputAction: TextInputAction.next,
                     ),
-                    TextInputField(
-                      textEditingController: isiLevel,
-                      icon: FontAwesomeIcons.user,
-                      hint: 'Level',
-                      inputType: TextInputType.text,
-                      inputAction: TextInputAction.next,
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(40, 10, 40, 10),
+                      child: Container(
+                        height: size.height * 0.08,
+                        width: size.width * 0.8,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[500]!.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: DropdownButton<String>(
+                          icon: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
+                            child: Icon(
+                              FontAwesomeIcons.angleDown,
+                              color: Colors.white,
+                            ),
+                          ),
+                          hint: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Text('Pilih Level',
+                                style: TextStyle(color: Colors.white)),
+                          ),
+                          value: selectedLevel,
+                          isExpanded: true,
+                          items: level.map((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                          onChanged: (perkiraan) {
+                            setState(() {
+                              selectedLevel = perkiraan;
+                            });
+                          },
+                        ),
+                      ),
                     ),
                     TextInputField(
                       textEditingController: isiPassword,

@@ -23,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: kAppBar,
+        color: Colors.yellow[800],
       ),
       child: SafeArea(
           top: false,
@@ -32,7 +32,7 @@ class CustomBottomNavBar extends StatelessWidget {
             children: [
               IconButton(
                 icon: Icon(FontAwesomeIcons.plus),
-                color: Colors.white,
+                color: Colors.black,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
                   return HomeScreen(
@@ -41,16 +41,16 @@ class CustomBottomNavBar extends StatelessWidget {
                 })),
               ),
               IconButton(
-                icon: Icon(FontAwesomeIcons.clipboard),
-                color: Colors.white,
+                icon: Icon(FontAwesomeIcons.solidFile),
+                color: Colors.black,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
                   return LaporanScreen(id: id,);
                 })),
               ),
               IconButton(
-                icon: Icon(FontAwesomeIcons.user),
-                color: Colors.white,
+                icon: Icon(FontAwesomeIcons.userAlt),
+                color: Colors.black,
                 onPressed: () => Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) {
                   return ProfilScreen(

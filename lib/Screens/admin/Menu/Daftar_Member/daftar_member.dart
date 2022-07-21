@@ -33,7 +33,6 @@ class _DaftarMemberState extends State<DaftarMember> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kAppBar,
       appBar: buildAppBar(context),
       body: RefreshIndicator(
         child: FutureBuilder<List>(
@@ -74,10 +73,10 @@ class _DaftarMemberState extends State<DaftarMember> {
               padding: const EdgeInsets.only(top: 5, left: 5, right: 5),
               child: Card(
                 elevation: 7,
-                shadowColor: Colors.grey[800],
+                shadowColor: Colors.black,
                 child: Container(
                   height: 120,
-                  color: Colors.grey[500]!.withOpacity(0.3),
+                  color: Colors.black54,
                   child: Column(
                     children: <Widget>[
                       Expanded(
@@ -109,11 +108,12 @@ class _DaftarMemberState extends State<DaftarMember> {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Container(
+          alignment: Alignment.centerLeft,
           child: Text(
             label,
-            textAlign: TextAlign.left,
+            
             style: TextStyle(
-              fontWeight: FontWeight.bold,
+              color: Colors.white,
               fontSize: 20,
             ),
           ),
@@ -127,19 +127,19 @@ AppBar buildAppBar(BuildContext context) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: kAppBar,
+    backgroundColor: Colors.yellow[800],
     leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios,
-                color: kWhite,
-              ),
-            ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: Icon(
+        Icons.arrow_back_ios,
+        color: Colors.black,
+      ),
+    ),
     title: Text(
       "Daftar Member",
-      style: TextStyle(fontWeight: FontWeight.bold),
+      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
     ),
   );
 }

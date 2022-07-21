@@ -23,10 +23,10 @@ class LaporanScreen extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       centerTitle: true,
-      backgroundColor: kAppBar,
+      backgroundColor: Colors.yellow[800],
       title: Text(
         "Data Pengajuan",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

@@ -171,7 +171,7 @@ AppBar buildAppBar() {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: kAppBar,
+    backgroundColor: Colors.yellow[800],
     title: Text(
       "MENU",
       style: TextStyle(fontWeight: FontWeight.bold),

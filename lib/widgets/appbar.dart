@@ -4,15 +4,25 @@ import '../constants.dart';
 
 
 
-AppBar buildAppBar(String judul) {
+AppBar buildAppBar(BuildContext context, String judul) {
   return AppBar(
     automaticallyImplyLeading: false,
     centerTitle: true,
-    backgroundColor: kAppBar,
+    leading: IconButton(
+      onPressed: () {
+        Navigator.pop(context);
+      },
+      icon: Icon(
+        Icons.arrow_back_ios,
+        color: Colors.black,
+      ),
+    ),
+    backgroundColor: Colors.yellow[800],
     title: Text(
       judul,
       style: TextStyle(
         fontWeight: FontWeight.bold,
+        color: Colors.black,
       ),
     ),
   );

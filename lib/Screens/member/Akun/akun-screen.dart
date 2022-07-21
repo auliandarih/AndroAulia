@@ -19,7 +19,7 @@ class AkunScreen extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       centerTitle: true,
-      backgroundColor: kAppBar,
+      backgroundColor: Colors.yellow[800],
       leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -31,7 +31,7 @@ class AkunScreen extends StatelessWidget {
             ),
       title: Text(
         "My Account",
-        style: TextStyle(fontWeight: FontWeight.bold),
+        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );
   }

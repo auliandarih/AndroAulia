@@ -50,12 +50,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "curved_navigation_bar",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/curved_navigation_bar-1.0.3",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "date_time_picker",
       "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/date_time_picker-2.1.0",
       "packageUri": "lib/",
@@ -106,6 +100,12 @@
     {
       "name": "font_awesome_flutter",
       "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "google_nav_bar",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/google_nav_bar-5.0.6",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -218,12 +218,6 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "snippet_coder_utils",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/snippet_coder_utils-1.0.12",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "source_span",
       "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1",
       "packageUri": "lib/",
@@ -284,7 +278,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-07-15T10:02:26.721652Z",
+  "generated": "2022-07-24T10:34:04.456564Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }

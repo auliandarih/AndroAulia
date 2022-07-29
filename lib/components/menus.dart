@@ -160,28 +160,6 @@ class menuDrawers extends StatelessWidget {
               color: Colors.white,
               height: 1,
             ),
-            ListTile(
-              leading: Icon(
-                Icons.password_rounded,
-                size: _drawerIconSize,
-                color: Colors.white,
-              ),
-              title: Text(
-                'Pendaftaran ulang',
-                style:
-                    TextStyle(fontSize: _drawerFontSize, color: Colors.white),
-              ),
-              onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => screenKosong()),
-                // );
-              },
-            ),
-            Divider(
-              color: Colors.white,
-              height: 1,
-            ),
             Divider(
               color: Colors.white,
               height: 1,
@@ -193,7 +171,7 @@ class menuDrawers extends StatelessWidget {
                 color: Colors.white,
               ),
               title: Text(
-                'Keluar',
+                'Logout',
                 style:
                     TextStyle(fontSize: _drawerFontSize, color: Colors.white),
               ),

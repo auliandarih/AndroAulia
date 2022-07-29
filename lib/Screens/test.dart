@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
 import '../../../../constants.dart';
 import '../../../../pallete.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class TestPage extends StatefulWidget {
   final String id;
@@ -18,67 +19,104 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+  Future<List> tampilSemuaPengajuan() async {
+    final url = Uri.parse(myUrl().tampil_pengajuan);
+    final respon = await http.post(url);
+
+    final hasil = jsonDecode(respon.body);
+
+    return hasil;
+  }
+
+  Future<Null> refreshData() async {
+    await Future.delayed(Duration(seconds: 3));
+    setState(() {
+      tampilSemuaPengajuan();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(context),
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 20, 10, 15),
-        child: ListView(
-          children: <Widget>[
-            Container(
-              height: 200,
-              child: GridView(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 4 / 2,
-                ),
-                children: <Widget>[
-                  _gridItem(FontAwesomeIcons.fileInvoiceDollar, "Pengajuan", HomeAdmin(id: widget.id)),
-                  _gridItem(FontAwesomeIcons.calendarCheck, "Event", HomeAdmin(id: widget.id)),
-                  _gridItem(FontAwesomeIcons.exclamationCircle, "Belum Dikonfirmasi", HomeAdmin(id: widget.id)),
-                  _gridItem(FontAwesomeIcons.chartLine, "Laba Rugi", HomeAdmin(id: widget.id)),
-                ],
-              ),
+      body: Center(
+        child: Container(
+          child: RefreshIndicator(
+            onRefresh: refreshData,
+            child: FutureBuilder(
+              future: tampilSemuaPengajuan(),
+              builder: (context, tempData) {
+                if (tempData.hasError) print(tempData.error);
+                return tempData.hasData == true
+                    ? designTampilan(tempData.requireData)
+                    : CircularProgressIndicator();
+              },
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  _gridItem(icon, judul, tujuan) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return tujuan;
-            },
-          ),
-        );
-      },
-      child: Column(
-        children: [
-          CircleAvatar(
-            child: Icon(
-              icon,
-              size: 20,
-              color: Colors.black,
+  Widget designTampilan(data) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 20, 10, 15),
+      child: ListView.builder(
+          itemCount: data == null ? 0 : data.length,
+          itemBuilder: (context, urutan) {
+            return Column(
+              children: [
+                column(
+                    data[urutan]['no_pengajuan'].toString(),
+                    data[urutan]['harga'].toString(),
+                    data[urutan]['qty'].toString(),
+                    data[urutan]['jumlah'].toString()),
+              ],
+            );
+          }),
+    );
+  }
+
+  Widget column(nope, harga, qty, jumlah) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: Container(
+            // color: Colors.blue,
+            alignment: Alignment.center,
+            child: Text(
+              nope,
             ),
-            backgroundColor: Colors.yellow[600],
-            radius: 25,
           ),
-          SizedBox(height: 5),
-          Expanded(
-            child: Container(
-              height: 20,
-              child: Text(judul, style: TextStyle(), textAlign: TextAlign.center,),
+        ),
+        Expanded(
+          child: Container(
+            // color: Colors.red,
+            alignment: Alignment.center,
+            child: Text(
+              harga,
             ),
-          )
-        ],
-      ),
+          ),
+        ),
+        Container(
+          // color: Colors.red,
+          alignment: Alignment.center,
+          width: 50,
+          child: Text(
+            qty,
+          ),
+        ),
+        Expanded(
+          child: Container(
+            // color: Colors.red,
+            alignment: Alignment.center,
+            child: Text(
+              jumlah,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

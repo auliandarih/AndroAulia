@@ -30,7 +30,7 @@ class AkunAdmin extends StatelessWidget {
               ),
             ),
       title: Text(
-        "My Account",
+        "Profil",
         style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
       ),
     );

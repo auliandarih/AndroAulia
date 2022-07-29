@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:AAccounting/Screens/admin/page/event/dataevent.dart';
 import 'package:AAccounting/Screens/admin/page/pengajuan/belum_konfirmasi.dart';
 import 'package:AAccounting/Screens/admin/page/pengajuan/data_pengajuan.dart';
+import 'package:AAccounting/Screens/admin/page/pengajuan/pengajuan_ditolak.dart';
 import 'package:AAccounting/Screens/admin/page/pengajuan/sudah_konfirmasi.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
@@ -19,26 +20,61 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  Future<List> tampilEvent() async {
-    final url = Uri.parse(myUrl().tampil_event);
-    final respon = await http.post(url);
+  Future<Map<String, dynamic>> ambildata() async {
+    try {
+      var url = Uri.parse(myUrl().user_profil);
+      var respon = await http.post(url, body: {
+        'id_user': widget.id,
+      });
+      var data = jsonDecode(respon.body) as Map<String, dynamic>;
 
-    final hasil = jsonDecode(respon.body);
+      return data;
+    } catch (err) {
+      throw (err);
+    }
+  }
 
-    return hasil;
+  Future<Null> refreshData() async {
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      ambildata();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: RefreshIndicator(
+          onRefresh: refreshData,
+          child: FutureBuilder(
+            future: ambildata(),
+            builder: (context, tempData) {
+              if (tempData.hasError) print(tempData.error);
+              return tempData.hasData == true
+                  ? designTampilan(tempData.requireData)
+                  : CircularProgressIndicator();
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget designTampilan(data) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
       child: ListView(
         children: <Widget>[
+          SizedBox(height: 15),
           Card(
             elevation: 7,
             child: Container(
               height: 240,
               // color: Colors.blue,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+              ),
               child: GridView(
                 padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -50,6 +86,8 @@ class _BodyState extends State<Body> {
                       DataPengajuan()),
                   _gridItem(FontAwesomeIcons.solidCalendarCheck, "Event",
                       DataEvent(id: widget.id)),
+                  _gridItem(FontAwesomeIcons.chartLine, "Laba Rugi",
+                      HomeAdmin(id: widget.id)),
                   _gridItem(
                       FontAwesomeIcons.exclamationCircle,
                       "Diajukan",
@@ -62,8 +100,12 @@ class _BodyState extends State<Body> {
                       SudahKonfirmasi(
                         id: widget.id,
                       )),
-                  _gridItem(FontAwesomeIcons.chartLine, "Laba Rugi",
-                      HomeAdmin(id: widget.id)),
+                  _gridItem(
+                      FontAwesomeIcons.solidTimesCircle,
+                      "Ditolak",
+                      Ditolak(
+                        id: widget.id,
+                      )),
                 ],
               ),
             ),

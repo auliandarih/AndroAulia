@@ -6,6 +6,7 @@ import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 class DataEvent extends StatefulWidget {
   final String id;
@@ -43,26 +44,46 @@ class _DataEventState extends State<DataEvent> {
           "Event",
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        actions: [
-          TextButton.icon(
-            icon: Icon(FontAwesomeIcons.plus, color: Colors.black),
-            label: Text("Add Event",
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold)),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return TambahEvent(
-                      id: widget.id,
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ],
+        // actions: [
+        //   TextButton.icon(
+        //     icon: Icon(FontAwesomeIcons.plus, color: Colors.black),
+        //     label: Text("Add Event",
+        //         style: TextStyle(
+        //             color: Colors.black, fontWeight: FontWeight.bold)),
+        //     onPressed: () {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) {
+        //       return TambahEvent(
+        //         id: widget.id,
+        //       );
+        //     },
+        //   ),
+        // );
+        //     },
+        //   ),
+        // ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return TambahEvent(
+                  id: widget.id,
+                );
+              },
+            ),
+          );
+        },
+        backgroundColor: Colors.yellow[800],
+        child: Icon(
+          FontAwesomeIcons.plus,
+          color: Colors.black,
+          size: 16,
+        ),
       ),
       body: Stack(
         children: [
@@ -96,10 +117,7 @@ class _DataEventState extends State<DataEvent> {
                 MaterialPageRoute(
                   builder: (context) {
                     return DetailEvent(
-                      list: dataHasil, 
-                      index: urutan, 
-                      id: widget.id)
-                    ;
+                        list: dataHasil, index: urutan, id: widget.id);
                   },
                 ),
               );

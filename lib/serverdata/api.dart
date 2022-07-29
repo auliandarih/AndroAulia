@@ -30,6 +30,9 @@ class myUrl{
   final String tampil_pengajuan_belum = Domain().domainku + "pengajuan_tampil_belum.php";
   final String tampil_pengajuan_sudah = Domain().domainku + "pengajuan_tampil_sudah.php";
   final String konfirmasi_pengajuan   = Domain().domainku + "pengajuan_konfirmasi.php";
+  final String tolak_pengajuan        = Domain().domainku + "pengajuan_ditolak.php";
+  final String tampil_ditolak         = Domain().domainku + "pengajuan_tampil_ditolak.php";
+  final String hapus_pengajuan        = Domain().domainku + "pengajuan_hapus.php";
 
   //JABATAN
   final String tampil_jabatan    = Domain().domainku + "jabatan_tampil.php";

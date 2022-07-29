@@ -69,3 +69,71 @@ class CustomBottomNavBar extends StatelessWidget {
 // BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.clipboard), title: Text("Laporan")),
 // BottomNavigationBarItem(icon: Icon(Icons.person), title: Text("Profil")),
 // ],
+
+// GNav(
+//       gap: 10,
+//       tabs: [
+//         GButton(
+//           icon: Icons.home,
+//           text: "home",
+//           onPressed: () => Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) {
+//                 return HomeScreen(
+//                   id: widget.id,
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//         GButton(
+//           icon: FontAwesomeIcons.solidFile,
+//           text: "Diajukan",
+//           onPressed: () => Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) {
+//                 return LaporanScreen(
+//                   id: widget.id,
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//         GButton(
+//           icon: Icons.check_circle,
+//           text: "Disetujui",
+//           onPressed: () => Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) {
+//                 return HomeScreen(
+//                   id: widget.id,
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//         GButton(
+//           icon: Icons.settings,
+//           text: "Settings",
+//           onPressed: () => Navigator.pushReplacement(
+//             context,
+//             MaterialPageRoute(
+//               builder: (context) {
+//                 return ProfilScreen(
+//                   id: widget.id,
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//       ],
+//       selectedIndex: _selectedIndex,
+//               onTabChange: (index) {
+//                 setState(() {
+//                   _selectedIndex = index;
+//                 });
+//               },
+//     );

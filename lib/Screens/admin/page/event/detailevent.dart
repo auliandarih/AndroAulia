@@ -64,9 +64,9 @@ class _DetailEventState extends State<DetailEvent> {
                   tampilan("Mother EO", widget.list[widget.index]['mother_eo']),
                   tampilan(
                       "Tanggal",
-                      widget.list[widget.index]['tgl_mulai'] +
+                      DateFormat.yMd().format(DateTime.parse(widget.list[widget.index]['tgl_mulai'])) +
                           " s/d " +
-                          widget.list[widget.index]['tgl_akhir']),
+                          DateFormat.yMd().format(DateTime.parse(widget.list[widget.index]['tgl_akhir']))),
                   tampilan(
                       "Budget",
                       NumberFormat.currency(

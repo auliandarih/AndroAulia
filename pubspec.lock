@@ -57,13 +57,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
-  curved_navigation_bar:
-    dependency: "direct main"
-    description:
-      name: curved_navigation_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.3"
   date_time_picker:
     dependency: "direct main"
     description:
@@ -121,6 +114,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "9.2.0"
+  google_nav_bar:
+    dependency: "direct main"
+    description:
+      name: google_nav_bar
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.6"
   http:
     dependency: "direct main"
     description:
@@ -245,13 +245,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  snippet_coder_utils:
-    dependency: "direct main"
-    description:
-      name: snippet_coder_utils
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.12"
   source_span:
     dependency: transitive
     description:

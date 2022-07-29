@@ -30,10 +30,6 @@ cupertino_icons
 2.12
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4/lib/
-curved_navigation_bar
-2.12
-file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/curved_navigation_bar-1.0.3/
-file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/curved_navigation_bar-1.0.3/lib/
 date_time_picker
 2.12
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/date_time_picker-2.1.0/
@@ -58,6 +54,10 @@ font_awesome_flutter
 2.12
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.2.0/
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/font_awesome_flutter-9.2.0/lib/
+google_nav_bar
+2.12
+file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/google_nav_bar-5.0.6/
+file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/google_nav_bar-5.0.6/lib/
 http
 2.14
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4/
@@ -126,10 +126,6 @@ plugin_platform_interface
 2.12
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.2/
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.2/lib/
-snippet_coder_utils
-2.12
-file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/snippet_coder_utils-1.0.12/
-file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/snippet_coder_utils-1.0.12/lib/
 source_span
 2.12
 file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/source_span-1.8.1/

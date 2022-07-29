@@ -60,69 +60,59 @@ class _DataPengajuanState extends State<DataPengajuan> {
               ),
             ),
           ],
-        ));
+        ),);
   }
 
   Widget desainTampilan(List dataHasil) {
     return ListView.builder(
-        itemCount: dataHasil == null ? 0 : dataHasil.length,
-        itemBuilder: (context, urutan) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Card(
-                elevation: 5,
-                color: Colors.white.withOpacity(0.9),
-                child: Container(
-                  height: 210,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          dataHasil[urutan]['nm_event'],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold
+      itemCount: dataHasil == null ? 0 : dataHasil.length,
+      itemBuilder: (context, urutan) {
+        return Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Card(
+            elevation: 5,
+            color: Colors.white.withOpacity(0.9),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    dataHasil[urutan]['nm_event'],
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
+                  isiColumn("No Pengajuan", dataHasil[urutan]['no_pengajuan']),
+                  isiColumn("Tanggal", dataHasil[urutan]['tgl']),
+                  isiColumn("Status", dataHasil[urutan]['confirmed']),
+                  SizedBox(height: 20),
+                  Container(
+                    color: Colors.blue[600]!.withOpacity(0.5),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Detail",
+                            style: TextStyle(color: Colors.black),
                           ),
-                        ),
-                        isiColumn("No Pengajuan", dataHasil[urutan]['no_pengajuan']),
-                        isiColumn("Tanggal", dataHasil[urutan]['tgl']),
-                        isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
-                        isiColumn("Status", dataHasil[urutan]['confirmed']),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                          child: Container(
-                            alignment: Alignment.bottomRight,
-                            child: MaterialButton(
-                              child: Text(
-                                "Detail",
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              color: Colors.yellow,
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) {
-                                //       return DataPengajuan(
-                                //         event: dataHasil[urutan]['nm_event'].toString(),
-                                //         idevent: dataHasil[urutan]['id_event'].toString(),
-                                //         list: dataHasil,
-                                //         index: urutan,
-                                //       );
-                                //     },
-                                //   ),
-                                // );
-                              },
-                            ),
-                          ),
-                        )
-                      ],
+                          SizedBox(width: 10),
+                          Icon(
+                            Icons.arrow_forward_ios,
+                            size: 14,
+                            color: Colors.black,
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                )),
-          );
-        });
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 
   Widget isiColumn(judul, isi) {

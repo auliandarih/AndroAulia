@@ -9,10 +9,7 @@ import 'package:intl/intl.dart';
 
 class BelumKonfirmasi extends StatefulWidget {
   final String id;
-  const BelumKonfirmasi({
-    Key? key,
-    required this.id
-  }) : super(key: key);
+  const BelumKonfirmasi({Key? key, required this.id}) : super(key: key);
 
   @override
   State<BelumKonfirmasi> createState() => _BelumKonfirmasiState();
@@ -80,73 +77,62 @@ class _BelumKonfirmasiState extends State<BelumKonfirmasi> {
             child: Card(
                 elevation: 5,
                 color: Colors.white.withOpacity(0.9),
-                child: Container(
-                  height: 300,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10),
-                    child: Column(
-                      children: <Widget>[
-                        isiColumn("Event", dataHasil[urutan]['nm_event']),
-                        isiColumn(
-                            "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
-                        isiColumn("Tanggal", dataHasil[urutan]['tgl']),
-                        isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
-                        isiColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
-                        isiColumn(
-                            "Harga",
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp. ',
-                                    decimalDigits: 0)
-                                .format(int.parse(dataHasil[urutan]['harga']))),
-                        isiColumn("QTY", dataHasil[urutan]['qty']),
-                        isiColumn(
-                            "Jumlah",
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp. ',
-                                    decimalDigits: 0)
-                                .format(
-                                    int.parse(dataHasil[urutan]['jumlah']))),
-                        isiColumn("Status", dataHasil[urutan]['confirmed']),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
-                          child: Container(
-                            alignment: Alignment.bottomRight,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(0, 0, 10, 0),
-                                  child: MaterialButton(
-                                    child: Text(
-                                      "Detail",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    color: Colors.yellow[600],
-                                    onPressed: () {
-                                      Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return FormKonfirmasi(
-                                            id: widget.id,
-                                            index: urutan,
-                                            list: dataHasil,
-                                          );
-                                        },
-                                      ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        dataHasil[urutan]['nm_event'],
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      isiColumn(
+                          "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
+                      isiColumn("Tanggal", dataHasil[urutan]['tgl']),
+                      isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
+                      isiColumn(
+                          "Jumlah",
+                          NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 0)
+                              .format(int.parse(dataHasil[urutan]['jumlah']))),
+                      SizedBox(height: 20),
+                      Container(
+                        height: 40,
+                        color: Colors.blue[100],
+                        child: TextButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return FormKonfirmasi(
+                                      id: widget.id,
+                                      index: urutan,
+                                      list: dataHasil,
                                     );
-                                    },
-                                  ),
+                                  },
                                 ),
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Lihat Detail",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                SizedBox(width: 10),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  size: 14,
+                                  color: Colors.black,
+                                )
                               ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                            )),
+                      ),
+                    ],
                   ),
                 )),
           );

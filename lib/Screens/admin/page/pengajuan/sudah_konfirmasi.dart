@@ -43,7 +43,7 @@ class _SudahKonfirmasiState extends State<SudahKonfirmasi> {
           backgroundColor: Colors.yellow[800],
           centerTitle: true,
           title: Text(
-            "Pengajuan Sudah Dikonfirmasi",
+            "Pengajuan Disetujui",
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),

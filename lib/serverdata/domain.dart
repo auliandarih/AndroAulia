@@ -1,5 +1,5 @@
 class Domain {
-  final String domainku = "http://192.168.122.1/api_arundaya/";
+  final String domainku = "http://10.140.191.158/api_arundaya/";
 }
 
 

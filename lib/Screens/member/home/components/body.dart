@@ -19,11 +19,8 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final isiNoPengajuan = TextEditingController();
   final isiNama = TextEditingController();
   final isiEvent = TextEditingController();
-  final isiAkun = TextEditingController();
-  final isiPerkiraan = TextEditingController();
   final isiDeskripsi = TextEditingController();
   final isiTanggalSave = TextEditingController();
   final isiHarga = TextEditingController();
@@ -46,7 +43,7 @@ class _BodyState extends State<Body> {
   List<String> dataPerkiraan1 = [
     'Kas',
     'Perlengkapan Kantor',
-    'Perlengkapan Kantor',
+    'Peralatan Kantor',
     'Akumulasi Penyusutan Peralatan Kantor'
   ];
   List<String> dataPerkiraan2 = ['Hutang Modal', 'Hutang Usaha'];
@@ -114,20 +111,19 @@ class _BodyState extends State<Body> {
   }
 
   void daftar() async {
-    var jumlah = int.parse(isiHarga.text) * int.parse(isiQty.text);
+    // var jumlah = int.parse(isiHarga.text) * int.parse(isiQty.text);
     var url = Uri.parse(myUrl().tambah_pengajuan);
     var respon = await http.post(url, body: {
-      'no_pengajuan': isiNoPengajuan.text,
       'id_user': widget.id,
       'id_event': selectedEvent,
-      'akun': selectedAkun,
-      'perkiraan': selectedPerkiraan,
+      // 'akun': selectedAkun,
+      // 'perkiraan': selectedPerkiraan,
       'deskripsi': isiDeskripsi.text,
       'tgl': isiTanggalSave.text,
-      'harga': isiHarga.text,
-      'qty': isiQty.text,
+      // 'harga': isiHarga.text,
+      // 'qty': isiQty.text,
       // 'jumlah': isiJumlah.text,
-      'jumlah': jumlah.toString(),
+      'jumlah': isiJumlah.text,
       'remark': isiRemark.text,
     });
 
@@ -204,23 +200,10 @@ class _BodyState extends State<Body> {
                     ),
                     Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
-                          child: Container(
-                            child: Text(
-                              "Input Data Pengajuan",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
-                        boxDaftar("No Pengajuan", isiNoPengajuan),
                         dropEvent(),
-                        dropAkun(),
-                        dropPerkiraan(),
                         boxDaftar("Deskripsi", isiDeskripsi),
                         tanggal(),
-                        boxDaftar("Harga", isiHarga),
-                        boxDaftar("QTY", isiQty),
+                        boxDaftar("Jumlah", isiJumlah),
                         boxDaftar("Remark", isiRemark),
                         MaterialButton(
                             color: Colors.green,
@@ -345,58 +328,66 @@ class _BodyState extends State<Body> {
       // dropdown below..
       child: Center(
         child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-            child: DropdownButton<String>(
-                hint: Text('Pilih Perkiraan'),
-                value: selectedPerkiraan,
-                isExpanded: true,
-                items: perkiraan.map((String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                }).toList(),
-                onChanged: (perkiraan) {
-                  setState(() {
-                    selectedPerkiraan = perkiraan;
-                  });
-                },
-              ),),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+          child: DropdownButton<String>(
+            hint: Text('Pilih Perkiraan'),
+            value: selectedPerkiraan,
+            isExpanded: true,
+            items: perkiraan.map((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (perkiraan) {
+              setState(() {
+                selectedPerkiraan = perkiraan;
+              });
+            },
+          ),
+        ),
       ),
     );
   }
 
   Widget dropEvent() {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height * 0.08,
-      padding: EdgeInsets.symmetric(horizontal: 10),
-      // decoration: BoxDecoration(
-      //   color: Colors.grey[500]!.withOpacity(0.5),
-      //   borderRadius: BorderRadius.circular(16)
-      // ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+      child: Container(
+        height: size.height * 0.08,
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        // decoration: BoxDecoration(
+        //   color: Colors.grey[500]!.withOpacity(0.5),
+        //   borderRadius: BorderRadius.circular(16)
+        // ),
 
-      // dropdown below..
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-          child: DropdownButton<String>(
+        // dropdown below..
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            child: DropdownButton<String>(
               isExpanded: true,
               value: selectedEvent,
-              hint: Text('Pilih Event',
-                  style: TextStyle(color: Colors.black)),
-              items: dataEvent.map((list) {
-                return DropdownMenuItem(
-                  child: Text(list['nm_event'],
-                      style: TextStyle(color: Colors.black)),
-                  value: list['id_event'].toString(),
-                );
-              }).toList(),
+              hint: Text('Pilih Event', style: TextStyle(color: Colors.black)),
+              items: dataEvent.map(
+                (list) {
+                  return DropdownMenuItem(
+                    child: Text(list['nm_event'],
+                        style: TextStyle(color: Colors.black)),
+                    value: list['id_event'].toString(),
+                  );
+                },
+              ).toList(),
               onChanged: (val) {
-                setState(() {
-                  selectedEvent = val;
-                });
-              }),
+                setState(
+                  () {
+                    selectedEvent = val;
+                  },
+                );
+              },
+            ),
+          ),
         ),
       ),
     );

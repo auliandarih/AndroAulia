@@ -1,5 +1,5 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=E:\AULIA\Android\flutter
+FLUTTER_ROOT=E:\AULIA\Android\flutter_3.0.5
 FLUTTER_APPLICATION_PATH=E:\AULIA\Kampus\Semester 3\Android\Welcome\Welcome
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib\main.dart
@@ -10,4 +10,4 @@ EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
 DART_OBFUSCATION=false
 TRACK_WIDGET_CREATION=false
 TREE_SHAKE_ICONS=false
-PACKAGE_CONFIG=.packages
+PACKAGE_CONFIG=.dart_tool/package_config.json

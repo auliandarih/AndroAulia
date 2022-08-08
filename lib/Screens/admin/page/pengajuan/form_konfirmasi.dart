@@ -274,16 +274,9 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
             ),
           ),
           tampilan("Event", widget.list[widget.index]['nm_event']),
-          tampilan("No Pengajuan", widget.list[widget.index]['no_pengajuan']),
           tampilan("No Event", widget.list[widget.index]['no_event']),
           tampilan("Nama Pengaju", widget.list[widget.index]['nama']),
           tampilan("Deskripsi", widget.list[widget.index]['deskripsi']),
-          tampilan(
-              "Harga",
-              NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
-                  .format(int.parse(widget.list[widget.index]['harga']))),
-          tampilan("Qty", widget.list[widget.index]['qty']),
           tampilan(
               "Total",
               NumberFormat.currency(

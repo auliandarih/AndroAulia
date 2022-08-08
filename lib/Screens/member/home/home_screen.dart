@@ -24,8 +24,9 @@ class HomeScreen extends StatelessWidget {
     return AppBar(
       automaticallyImplyLeading: false,
       backgroundColor: Colors.yellow[800],
+      centerTitle: true,
       title: Text(
-        "AAccounting",
+        "Input Pengajuan",
         style: TextStyle(
           fontWeight: FontWeight.bold,
           color: Colors.black

@@ -1,14 +1,17 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/member/Laporan/page/realisasi.dart';
 import 'package:http/http.dart' as http;
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../../constants.dart';
 import '../../../../pallete.dart';
 
 class DetailPengajuan extends StatefulWidget {
+  final String id;
   final String nope;
   final String event;
-  const DetailPengajuan({Key? key, required this.nope, required this.event})
+  const DetailPengajuan({Key? key, required this.nope, required this.event, required this.id})
       : super(key: key);
 
   @override
@@ -46,7 +49,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
           backgroundColor: Colors.yellow[800],
           title: Text(
             "Detail Pengajuan",
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
         ),
         body: Center(
@@ -83,13 +86,61 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
               ),
             ),
           ),
-          namacolumn("Tanggal", data[0]['tgl']),
+          namacolumn("Tanggal",
+              DateFormat.yMMMd().format(DateTime.parse(data[0]['tgl']))),
           namacolumn("No Pengajuan", data[0]['no_pengajuan']),
-          namacolumn("Akun Perkiraan", data[0]['akun']),
           namacolumn("Deskripsi", data[0]['deskripsi']),
-          namacolumn("Harga", data[0]['harga']),
-          namacolumn("QTY", data[0]['qty']),
-          namacolumn("Jumlah", data[0]['jumlah']),
+          namacolumn(
+              "Jumlah",
+              NumberFormat.currency(
+                      locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
+                  .format(int.parse(data[0]['jumlah']))),
+          namacolumn("Remark", data[0]['remark']),
+          namacolumn("Status", data[0]['confirmed']),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
+              child: Container(
+                // color: Colors.black,
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if (data[0]['confirmed'] == "Belum Dikonfirmasi")
+                      MaterialButton(
+                        color: Colors.blue,
+                        child: Text(
+                          "Edit",
+                          style: TextStyle(),
+                        ),
+                        onPressed: () {},
+                      ),
+                    if (data[0]['confirmed'] == "Sudah Dikonfirmasi")
+                      MaterialButton(
+                        color: Colors.amberAccent[700],
+                        child: Text(
+                          "Realisasi",
+                          style: TextStyle(),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return RealisasiPage(
+                                  nopengajuan: data[0]['no_pengajuan'],
+                                  id: widget.id,
+                                );
+                              },
+                            ),
+                          );
+                        },
+                      ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

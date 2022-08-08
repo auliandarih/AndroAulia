@@ -87,19 +87,9 @@ class _SudahKonfirmasiState extends State<SudahKonfirmasi> {
                     child: Column(
                       children: <Widget>[
                         isiColumn("Event", dataHasil[urutan]['nm_event']),
-                        isiColumn(
-                            "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
                         isiColumn("Tanggal", dataHasil[urutan]['tgl']),
                         isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
                         isiColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
-                        isiColumn(
-                            "Harga",
-                            NumberFormat.currency(
-                                    locale: 'id',
-                                    symbol: 'Rp. ',
-                                    decimalDigits: 0)
-                                .format(int.parse(dataHasil[urutan]['harga']))),
-                        isiColumn("QTY", dataHasil[urutan]['qty']),
                         isiColumn(
                             "Jumlah",
                             NumberFormat.currency(

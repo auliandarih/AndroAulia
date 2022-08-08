@@ -73,6 +73,7 @@ class _DetailEventState extends State<DetailEvent> {
                               locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
                           .format(
                               int.parse(widget.list[widget.index]['budget']))),
+                  tampilan("Status", widget.list[widget.index]['status']),
                   SizedBox(height: 20),
                   Container(
                     color: Colors.blue[100],
@@ -112,6 +113,17 @@ class _DetailEventState extends State<DetailEvent> {
                   MaterialButton(
                     child: Text(
                       "Edit",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    color: Colors.blue[400],
+                    onPressed: () {},
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  MaterialButton(
+                    child: Text(
+                      "Event Selesai",
                       style: TextStyle(color: Colors.black),
                     ),
                     color: Colors.blue[400],

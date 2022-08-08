@@ -45,7 +45,7 @@
     },
     {
       "name": "cupertino_icons",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.4",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/cupertino_icons-1.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -57,7 +57,7 @@
     },
     {
       "name": "dots_indicator",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.0.0",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/dots_indicator-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -111,13 +111,13 @@
     },
     {
       "name": "http",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.4",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http-0.13.5",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
     {
       "name": "http_parser",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.0",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/http_parser-4.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -147,7 +147,7 @@
     },
     {
       "name": "image_picker_platform_interface",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_platform_interface-2.4.1",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/image_picker_platform_interface-2.5.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -207,7 +207,7 @@
     },
     {
       "name": "plugin_platform_interface",
-      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.0.2",
+      "rootUri": "file:///E:/AULIA/Android/flutter/.pub-cache/hosted/pub.dartlang.org/plugin_platform_interface-2.1.2",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -278,7 +278,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-07-24T10:34:04.456564Z",
+  "generated": "2022-08-07T08:07:47.669320Z",
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }

@@ -27,6 +27,7 @@ class _TambahEventState extends State<TambahEvent> {
   final isiTglMulai = TextEditingController();
   final isiTglAkhir = TextEditingController();
   final isiBudget = TextEditingController();
+  final isiStatus = TextEditingController();
 
   String tglMulaiSave = '';
   String tglMulaiChanged = '';

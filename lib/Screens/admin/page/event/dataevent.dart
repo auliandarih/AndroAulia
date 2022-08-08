@@ -127,47 +127,55 @@ class _DataEventState extends State<DataEvent> {
               child: Card(
                 elevation: 5,
                 color: Colors.white.withOpacity(0.9),
-                child: Container(
-                    height: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 7),
-                      child: Column(
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 7),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        dataHasil[urutan]['nm_event'],
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        dataHasil[urutan]['no_event'],
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            dataHasil[urutan]['nm_event'],
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            dataHasil[urutan]['no_event'],
+                            DateFormat.MMMd().format(DateTime.parse(dataHasil[urutan]['tgl_mulai'])),
                             style: TextStyle(color: Colors.black),
                           ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Text(
-                                dataHasil[urutan]['tgl_mulai'],
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              Text(' s/d ',
-                                  style: TextStyle(color: Colors.black)),
-                              Text(
-                                dataHasil[urutan]['tgl_akhir'],
-                                style: TextStyle(color: Colors.black),
-                              ),
-                            ],
+                          Text(' s/d ',
+                              style: TextStyle(color: Colors.black)),
+                          Text(
+                            DateFormat.yMMMd().format(DateTime.parse(dataHasil[urutan]['tgl_akhir'])),
+                            style: TextStyle(color: Colors.black),
                           ),
                         ],
                       ),
-                    )),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        dataHasil[urutan]['status'].toString(),
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      SizedBox(
+                            height: 10,
+                          ),
+                    ],
+                  ),
+                ),
               ),
             ),
           );

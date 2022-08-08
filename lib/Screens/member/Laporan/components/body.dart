@@ -70,23 +70,19 @@ class _BodyState extends State<Body> {
                       Container(
                         alignment: Alignment.topRight,
                         child: Text(
-                            DateFormat.yMd().format(
+                            DateFormat.yMMMd().format(
                                 DateTime.parse(dataHasil[urutan]['tgl'])),
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold)),
-                      ),
-                      SizedBox(
-                        height: 9,
                       ),
                       Text(dataHasil[urutan]['nm_event'],
                           style: TextStyle(
                               fontSize: 17,
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
-                      namaColumn(
-                          "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
                       namaColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
+                      namaColumn("Jumlah", NumberFormat.currency(locale: 'id', symbol: 'Rp. ', decimalDigits: 0).format(int.parse(dataHasil[urutan]['jumlah']))),
                       namaColumn("Status", dataHasil[urutan]['confirmed']),
                       SizedBox(
                         height: 20,
@@ -104,6 +100,7 @@ class _BodyState extends State<Body> {
                                           .toString(),
                                       event: dataHasil[urutan]['nm_event']
                                           .toString(),
+                                          id: widget.id,
                                     );
                                   },
                                 ),

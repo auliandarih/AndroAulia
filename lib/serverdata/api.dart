@@ -36,4 +36,9 @@ class myUrl{
 
   //JABATAN
   final String tampil_jabatan    = Domain().domainku + "jabatan_tampil.php";
+
+  //REALISASI
+  final String tampil_realisasi           = Domain().domainku + "realisasi_tampil.php";
+  final String tampil_realisasi_pengajuan = Domain().domainku + "realisasi_perpengajuan.php";
+  final String tambah_realisasi           = Domain().domainku + "realisasi_tambah.php";
 }

@@ -92,7 +92,7 @@ class _BodyState extends State<Body> {
   List dataEvent = [];
 
   Future tampilEvent() async {
-    var url = Uri.parse(myUrl().tampil_event);
+    var url = Uri.parse(myUrl().tampil_event_aktif);
     var respon = await http.get(url);
 
     var hasil = jsonDecode(respon.body);

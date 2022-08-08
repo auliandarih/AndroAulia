@@ -9,10 +9,11 @@ class myUrl{
   final String user_tampil  = Domain().domainku + "user_tampil_semua.php";
 
   //EVENT
-  final String tampil_event     = Domain().domainku + "event_tampil_semua.php";
-  final String tampil_perevent  = Domain().domainku + "event_tampil_perevent.php";
-  final String tambah_event     = Domain().domainku + "event_tambah.php";
-  final String hapus_event      = Domain().domainku + "event_hapus.php";
+  final String tampil_event       = Domain().domainku + "event_tampil_semua.php";
+  final String tampil_event_aktif = Domain().domainku + "event_tampil_aktif.php";
+  final String tampil_perevent    = Domain().domainku + "event_tampil_perevent.php";
+  final String tambah_event       = Domain().domainku + "event_tambah.php";
+  final String hapus_event        = Domain().domainku + "event_hapus.php";
 
   //PERKIRAAN
   final String tampil_perkiraan         = Domain().domainku + "perkiraan_tampil_semua.php";

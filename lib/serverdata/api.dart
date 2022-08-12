@@ -42,4 +42,5 @@ class myUrl{
   final String tampil_realisasi           = Domain().domainku + "realisasi_tampil.php";
   final String tampil_realisasi_pengajuan = Domain().domainku + "realisasi_perpengajuan.php";
   final String tambah_realisasi           = Domain().domainku + "realisasi_tambah.php";
+  final String total_realisasi            = Domain().domainku + "realisasi_jumlah_pengajuan.php";
 }

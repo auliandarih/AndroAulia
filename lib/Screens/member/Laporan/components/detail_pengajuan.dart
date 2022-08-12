@@ -11,7 +11,8 @@ class DetailPengajuan extends StatefulWidget {
   final String id;
   final String nope;
   final String event;
-  const DetailPengajuan({Key? key, required this.nope, required this.event, required this.id})
+  const DetailPengajuan(
+      {Key? key, required this.nope, required this.event, required this.id})
       : super(key: key);
 
   @override
@@ -33,10 +34,22 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
     }
   }
 
+  Future tampilTotal() async {
+    var url = Uri.parse(myUrl().total_realisasi);
+    var respon = await http.post(url, body: {'no_pengajuan': widget.nope});
+
+    var hasil = jsonDecode(respon.body);
+
+    final String total = hasil;
+
+    return hasil;
+  }
+
   Future<Null> refreshData() async {
     await Future.delayed(Duration(seconds: 2));
     setState(() {
       ambildata();
+      tampilTotal();
     });
   }
 
@@ -53,18 +66,16 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
           ),
         ),
         body: Center(
-          child: Container(
-            child: RefreshIndicator(
-              onRefresh: refreshData,
-              child: FutureBuilder<List>(
-                future: ambildata(),
-                builder: (context, tempData) {
-                  if (tempData.hasError) print(tempData.error);
-                  return tempData.hasData == true
-                      ? designTampilan(tempData.requireData)
-                      : CircularProgressIndicator();
-                },
-              ),
+          child: RefreshIndicator(
+            onRefresh: refreshData,
+            child: FutureBuilder<List>(
+              future: ambildata(),
+              builder: (context, tempData) {
+                if (tempData.hasError) print(tempData.error);
+                return tempData.hasData == true
+                    ? designTampilan(tempData.requireData)
+                    : CircularProgressIndicator();
+              },
             ),
           ),
         ));

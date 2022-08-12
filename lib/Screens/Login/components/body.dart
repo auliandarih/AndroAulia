@@ -118,7 +118,7 @@ class Body extends StatelessWidget {
                       TextInputField(
                         textEditingController: isiUsername,
                         icon: FontAwesomeIcons.envelope,
-                        hint: 'Your Email',
+                        hint: 'Email',
                         inputType: TextInputType.emailAddress,
                         inputAction: TextInputAction.next,
                       ),
@@ -128,22 +128,6 @@ class Body extends StatelessWidget {
                         hint: 'Password',
                         inputType: TextInputType.visiblePassword,
                         inputAction: TextInputAction.done,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ForgotPassword();
-                              },
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Forgot Password',
-                          style: TextStyle(color: Colors.white),
-                        ),
                       ),
                       SizedBox(
                         height: 25,

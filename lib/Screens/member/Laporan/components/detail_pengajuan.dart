@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/member/Laporan/components/pengajuan_edit.dart';
 import 'package:AAccounting/Screens/member/Laporan/page/realisasi.dart';
 import 'package:http/http.dart' as http;
 import 'package:AAccounting/serverdata/api.dart';
@@ -21,17 +22,13 @@ class DetailPengajuan extends StatefulWidget {
 
 class _DetailPengajuanState extends State<DetailPengajuan> {
   Future<List> ambildata() async {
-    try {
-      var url = Uri.parse(myUrl().tampil_perpengajuan);
-      var respon = await http.post(url, body: {
-        'no_pengajuan': widget.nope,
-      });
-      var data = jsonDecode(respon.body);
+    var url = Uri.parse(myUrl().tampil_perpengajuan);
+    var respon = await http.post(url, body: {
+      'no_pengajuan': widget.nope,
+    });
+    var data = jsonDecode(respon.body);
 
-      return data;
-    } catch (err) {
-      throw (err);
-    }
+    return data;
   }
 
   Future tampilTotal() async {
@@ -107,7 +104,51 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                       locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
                   .format(int.parse(data[0]['jumlah']))),
           namacolumn("Remark", data[0]['remark']),
-          namacolumn("Status", data[0]['confirmed']),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 10),
+            child: Row(
+              children: [
+                Container(
+                  width: 120,
+                  child: Text(
+                    "Status",
+                    style: kBodyText,
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  ":",
+                  style: kBodyText,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: Container(
+                    child: Text(
+                      data[0]['confirmed'].toString(),
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: (data[0]['confirmed'] == 'Belum Dikonfirmasi'
+                              ? Colors.yellow[900]
+                              : Colors.green),
+                          height: 1.5,
+                          fontWeight: FontWeight.bold
+                        ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (data[0]['confirmed'] == "Sudah Dikonfirmasi")
+            Expanded(
+              child: namacolumn("Total Realisasi", NumberFormat.currency(
+                      locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
+                  .format(int.parse(data[0]['total']))),
+            ),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 20, 30),
@@ -124,7 +165,19 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                           "Edit",
                           style: TextStyle(),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return EditPengajuan(
+                                  nope: data[0]['no_pengajuan'],
+                                  id: widget.id,
+                                );
+                              },
+                            ),
+                          );
+                        },
                       ),
                     if (data[0]['confirmed'] == "Sudah Dikonfirmasi")
                       MaterialButton(

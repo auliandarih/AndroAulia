@@ -36,7 +36,7 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
       'tgl': isiTanggal.text,
       'harga': isiHarga.text,
       'qty': isiQty.text,
-      'jumlah': isiJumlah.text,
+      'jumlah_realisasi': isiJumlah.text,
       'remark': isiRemark.text,
       'referensi': isiReferensi.text,
     });

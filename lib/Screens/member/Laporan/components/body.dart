@@ -57,7 +57,7 @@ class _BodyState extends State<Body> {
 
   Widget desainTampilan(List dataHasil) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 15),
       child: ListView.builder(
           itemCount: dataHasil == null ? 0 : dataHasil.length,
           itemBuilder: (context, urutan) {
@@ -65,16 +65,24 @@ class _BodyState extends State<Body> {
               padding: const EdgeInsets.only(top: 5),
               child: Card(
                   elevation: 5,
+                  color: (dataHasil[urutan]['confirmed'] == 'Belum Dikonfirmasi'
+                      ? Colors.yellow[100]
+                      : (dataHasil[urutan]['confirmed'] == 'Ditolak'
+                          ? Colors.red[100]
+                          : Colors.green[100])),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        alignment: Alignment.topRight,
-                        child: Text(
-                            DateFormat.yMMMd().format(
-                                DateTime.parse(dataHasil[urutan]['tgl'])),
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 10, 0),
+                        child: Container(
+                          alignment: Alignment.topRight,
+                          child: Text(
+                              DateFormat.yMMMd().format(
+                                  DateTime.parse(dataHasil[urutan]['tgl'])),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold)),
+                        ),
                       ),
                       Text(dataHasil[urutan]['nm_event'],
                           style: TextStyle(
@@ -82,8 +90,50 @@ class _BodyState extends State<Body> {
                               color: Colors.black,
                               fontWeight: FontWeight.bold)),
                       namaColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
-                      namaColumn("Jumlah", NumberFormat.currency(locale: 'id', symbol: 'Rp. ', decimalDigits: 0).format(int.parse(dataHasil[urutan]['jumlah']))),
-                      namaColumn("Status", dataHasil[urutan]['confirmed']),
+                      namaColumn(
+                          "Jumlah",
+                          NumberFormat.currency(
+                                  locale: 'id',
+                                  symbol: 'Rp. ',
+                                  decimalDigits: 0)
+                              .format(int.parse(dataHasil[urutan]['jumlah']))),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, right: 10, top: 7),
+                        child: Row(children: [
+                          Container(
+                            width: 150,
+                            child: Text(
+                              "Status",
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            ": ",
+                            style: TextStyle(
+                              color: Colors.black,
+                            ),
+                          ),
+                          Container(
+                            child: Text(
+                              dataHasil[urutan]['confirmed'].toString(),
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  color: (dataHasil[urutan]['confirmed'] ==
+                                          'Belum Dikonfirmasi'
+                                      ? Colors.yellow[900]
+                                      : (dataHasil[urutan]['confirmed'] ==
+                                              'Ditolak'
+                                          ? Colors.red
+                                          : Colors.green)),
+                                  height: 1.5,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ]),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -100,7 +150,7 @@ class _BodyState extends State<Body> {
                                           .toString(),
                                       event: dataHasil[urutan]['nm_event']
                                           .toString(),
-                                          id: widget.id,
+                                      id: widget.id,
                                     );
                                   },
                                 ),

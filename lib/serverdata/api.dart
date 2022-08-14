@@ -28,12 +28,14 @@ class myUrl{
   final String tampil_pengajuanuser   = Domain().domainku + "pengajuan_tampiluser.php";
   final String tampil_pengajuanevent  = Domain().domainku + "pengajuan_tampil_perevent.php";
   final String tampil_perpengajuan    = Domain().domainku + "pengajuan_tampil_perno.php";
+  final String tampil_pengajuan_edit  = Domain().domainku + "pengajuan_tampil_edit.php";
   final String tampil_pengajuan_belum = Domain().domainku + "pengajuan_tampil_belum.php";
   final String tampil_pengajuan_sudah = Domain().domainku + "pengajuan_tampil_sudah.php";
   final String konfirmasi_pengajuan   = Domain().domainku + "pengajuan_konfirmasi.php";
   final String tolak_pengajuan        = Domain().domainku + "pengajuan_ditolak.php";
   final String tampil_ditolak         = Domain().domainku + "pengajuan_tampil_ditolak.php";
   final String hapus_pengajuan        = Domain().domainku + "pengajuan_hapus.php";
+  final String edit_pengajuan         = Domain().domainku + "pengajuan_edit.php";
 
   //JABATAN
   final String tampil_jabatan    = Domain().domainku + "jabatan_tampil.php";

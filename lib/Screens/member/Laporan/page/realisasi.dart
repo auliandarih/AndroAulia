@@ -117,7 +117,7 @@ class _RealisasiPageState extends State<RealisasiPage> {
                     child: Text(
                       NumberFormat.currency(
                               locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
-                          .format(int.parse(dataHasil[urutan]['jumlah'])),
+                          .format(int.parse(dataHasil[urutan]['jumlah_realisasi'])),
                     ),
                   ),
                 ),

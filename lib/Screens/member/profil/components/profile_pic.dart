@@ -22,26 +22,6 @@ class ProfilPic extends StatelessWidget {
             backgroundColor: Colors.white,
             backgroundImage: AssetImage('assets/images/logo.PNG'),
           ),
-          Positioned(
-            right: 0,
-            bottom: 0,
-            child: SizedBox(
-              height: 35,
-              width: 35,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: BorderSide(color: Colors.white),
-                  ),
-                  primary: Colors.black,
-                  backgroundColor: Color(0xFFF5F6F9),
-                ),
-                onPressed: () {},
-                child: SvgPicture.asset("assets/icons/Camera Icon.svg"),
-              ),
-            ),
-          )
         ],
       ),
     );

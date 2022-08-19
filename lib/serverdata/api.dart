@@ -13,6 +13,7 @@ class myUrl{
   final String tampil_event_aktif = Domain().domainku + "event_tampil_aktif.php";
   final String tampil_perevent    = Domain().domainku + "event_tampil_perevent.php";
   final String tambah_event       = Domain().domainku + "event_tambah.php";
+  final String update_event       = Domain().domainku + "event_update_status.php";
   final String hapus_event        = Domain().domainku + "event_hapus.php";
 
   //PERKIRAAN
@@ -43,6 +44,8 @@ class myUrl{
   //REALISASI
   final String tampil_realisasi           = Domain().domainku + "realisasi_tampil.php";
   final String tampil_realisasi_pengajuan = Domain().domainku + "realisasi_perpengajuan.php";
+  final String tampil_realisasi_kembali   = Domain().domainku + "realisasi_kembalikan_dana.php";
   final String tambah_realisasi           = Domain().domainku + "realisasi_tambah.php";
+  final String tambah_kembali_realisasi   = Domain().domainku + "realisasi_tambah_kembali.php";
   final String total_realisasi            = Domain().domainku + "realisasi_jumlah_pengajuan.php";
 }

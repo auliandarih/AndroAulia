@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/admin/page/pengajuan/detail_pengajuan.dart';
 import 'package:AAccounting/constants.dart';
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:AAccounting/widgets/appbar.dart';
@@ -7,8 +8,10 @@ import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 
 class DataPengajuan extends StatefulWidget {
+  final String id;
   const DataPengajuan({
     Key? key,
+    required this.id,
   }) : super(key: key);
 
   @override
@@ -35,32 +38,33 @@ class _DataPengajuanState extends State<DataPengajuan> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.black),
-          backgroundColor: Colors.yellow[800],
-          centerTitle: true,
-          title: Text(
-            "Data Pengajuan",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
-          ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
+        backgroundColor: Colors.yellow[800],
+        centerTitle: true,
+        title: Text(
+          "Data Pengajuan",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
-        body: Stack(
-          children: [
-            Container(
-              child: FutureBuilder<List>(
-                future: tampilSemuaPengajuan(),
-                builder: (context, tempData) {
-                  if (tempData.hasError) print(tempData.error);
-                  return tempData.hasData == true
-                      ? desainTampilan(tempData.requireData)
-                      : Center(
-                          child: CircularProgressIndicator(),
-                        );
-                },
-              ),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            child: FutureBuilder<List>(
+              future: tampilSemuaPengajuan(),
+              builder: (context, tempData) {
+                if (tempData.hasError) print(tempData.error);
+                return tempData.hasData == true
+                    ? desainTampilan(tempData.requireData)
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      );
+              },
             ),
-          ],
-        ),);
+          ),
+        ],
+      ),
+    );
   }
 
   Widget desainTampilan(List dataHasil) {
@@ -82,13 +86,29 @@ class _DataPengajuanState extends State<DataPengajuan> {
                   ),
                   isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
                   isiColumn("No Pengajuan", dataHasil[urutan]['no_pengajuan']),
-                  isiColumn("Tanggal", dataHasil[urutan]['tgl']),
+                  isiColumn(
+                      "Tanggal",
+                      DateFormat('dd MMMM yyyy')
+                          .format(DateTime.parse(dataHasil[urutan]['tgl']))),
                   isiColumn("Status", dataHasil[urutan]['confirmed']),
                   SizedBox(height: 20),
                   Container(
                     color: Colors.blue[600]!.withOpacity(0.5),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DetailPengajuanAdmin(
+                                id: widget.id,
+                                index: urutan,
+                                list: dataHasil,
+                              );
+                            },
+                          ),
+                        );
+                      },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

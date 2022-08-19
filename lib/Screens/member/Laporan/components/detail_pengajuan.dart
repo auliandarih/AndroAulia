@@ -11,9 +11,8 @@ import '../../../../pallete.dart';
 class DetailPengajuan extends StatefulWidget {
   final String id;
   final String nope;
-  final String event;
   const DetailPengajuan(
-      {Key? key, required this.nope, required this.event, required this.id})
+      {Key? key, required this.nope, required this.id})
       : super(key: key);
 
   @override
@@ -86,7 +85,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
           Padding(
             padding: const EdgeInsets.fromLTRB(0, 20, 0, 30),
             child: Text(
-              widget.event,
+              data[0]['nm_event'],
               style: TextStyle(
                 fontSize: 20,
                 color: Colors.black,
@@ -95,7 +94,7 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
             ),
           ),
           namacolumn("Tanggal",
-              DateFormat.yMMMd().format(DateTime.parse(data[0]['tgl']))),
+              DateFormat('dd-MM-yyyy').format(DateTime.parse(data[0]['tgl']))),
           namacolumn("No Pengajuan", data[0]['no_pengajuan']),
           namacolumn("Deskripsi", data[0]['deskripsi']),
           namacolumn(
@@ -133,7 +132,9 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                           fontSize: 15,
                           color: (data[0]['confirmed'] == 'Belum Dikonfirmasi'
                               ? Colors.yellow[900]
-                              : Colors.green),
+                              : (data[0]['confirmed'] == 'Sudah Dikonfirmasi'
+                              ? Colors.green
+                              : Colors.red)),
                           height: 1.5,
                           fontWeight: FontWeight.bold
                         ),
@@ -193,6 +194,8 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                               builder: (context) {
                                 return RealisasiPage(
                                   nopengajuan: data[0]['no_pengajuan'],
+                                  real: data[0]['total'],
+                                  jumlah: data[0]['jumlah'],
                                   id: widget.id,
                                 );
                               },

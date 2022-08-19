@@ -28,6 +28,8 @@ class _BodyState extends State<Body> {
   final isiJumlah = TextEditingController();
   final isiRemark = TextEditingController();
 
+  DateTime tgl = DateTime.now();
+
   // late DateTime date;
   String TanggalSave1 = '';
   String TanggalChanged1 = '';
@@ -100,7 +102,6 @@ class _BodyState extends State<Body> {
     setState(() {
       dataEvent = hasil;
     });
-    print(hasil);
   }
 
   @override
@@ -205,10 +206,13 @@ class _BodyState extends State<Body> {
                         tanggal(),
                         boxDaftar("Jumlah", isiJumlah),
                         boxDaftar("Remark", isiRemark),
+                        SizedBox(
+                          height: 20,
+                        ),
                         MaterialButton(
-                            color: Colors.green,
+                            color: Colors.blue[400],
                             child: Text(
-                              "Submit",
+                              "Tambah",
                               style: TextStyle(),
                             ),
                             onPressed: daftar),
@@ -241,6 +245,8 @@ class _BodyState extends State<Body> {
   }
 
   Widget tanggal() {
+    DateFormat formatter = DateFormat('yyyy-MM-dd');
+    String tglBaru = formatter.format(tgl);
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
       child: DateTimePicker(
@@ -252,7 +258,7 @@ class _BodyState extends State<Body> {
           color: Colors.black,
         ),
         dateMask: 'yyyy-MM-dd',
-        controller: isiTanggalSave,
+        controller: isiTanggalSave..text = '${tglBaru}',
         //initialValue: _initialValue,
         firstDate: DateTime(2000),
         lastDate: DateTime(2100),

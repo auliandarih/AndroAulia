@@ -148,8 +148,6 @@ class _BodyState extends State<Body> {
                                     return DetailPengajuan(
                                       nope: dataHasil[urutan]['no_pengajuan']
                                           .toString(),
-                                      event: dataHasil[urutan]['nm_event']
-                                          .toString(),
                                       id: widget.id,
                                     );
                                   },

@@ -268,7 +268,7 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
             // color: Colors.red,
             alignment: Alignment.centerRight,
             child: Text(
-              DateFormat.yMd()
+              DateFormat('dd MMMM yyyy')
                   .format(DateTime.parse(widget.list[widget.index]['tgl'])),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
@@ -278,7 +278,7 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
           tampilan("Nama Pengaju", widget.list[widget.index]['nama']),
           tampilan("Deskripsi", widget.list[widget.index]['deskripsi']),
           tampilan(
-              "Total",
+              "Jumlah Pengajuan",
               NumberFormat.currency(
                       locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
                   .format(int.parse(widget.list[widget.index]['jumlah']))),
@@ -371,7 +371,7 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
           Container(
             alignment: Alignment.centerLeft,
             height: 30,
-            width: 120,
+            width: 140,
             child: Text(
               judul,
               style: TextStyle(),

@@ -29,6 +29,97 @@ class _DetailEventState extends State<DetailEvent> {
     return hasil;
   }
 
+  void selesaiEvent() async {
+    var url = Uri.parse(myUrl().update_event);
+    var respon = await http.post(url,
+        body: {'id_event': widget.list[widget.index]['id_event']});
+
+    final hasil = jsonDecode(respon.body);
+
+    bool error = hasil['error'];
+    String pesan = hasil['message'];
+
+    if (error == true) {
+      showAlertDialog(context, "Update Gagal",
+          "ID Event Salah !");
+      //Panggil Menu
+
+    } else {
+      AlertDialog konfirm = AlertDialog(
+        title: Text("Konfirmasi"),
+        content: Text(
+            "Apakah Anda Yakin Event Ini Sudah Selesai ?"),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              RaisedButton(
+                child: Text("Batal"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              RaisedButton(
+                child: Text("Iya"),
+                color: Colors.blue[400],
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return HomeAdmin(
+                          id: widget.id,
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ],
+          )
+        ],
+      );
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return konfirm;
+        },
+      );
+    }
+  }
+
+  //Metode tampil Pesan Error/Informasi
+  showAlertDialog(BuildContext context, String judul, String pesan) {
+    // set up the button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.of(context).pop(); // dismiss dialog
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(judul),
+      content: Text(pesan),
+      actions: [
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,7 +218,7 @@ class _DetailEventState extends State<DetailEvent> {
                       style: TextStyle(color: Colors.black),
                     ),
                     color: Colors.blue[400],
-                    onPressed: () {},
+                    onPressed: selesaiEvent,
                   ),
                 ],
               ),

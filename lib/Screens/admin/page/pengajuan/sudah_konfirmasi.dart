@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:AAccounting/Screens/admin/page/pengajuan/detail_pengajuan.dart';
 import 'package:AAccounting/Screens/admin/page/pengajuan/form_konfirmasi.dart';
 import 'package:AAccounting/constants.dart';
 import 'package:AAccounting/serverdata/api.dart';
@@ -81,13 +82,12 @@ class _SudahKonfirmasiState extends State<SudahKonfirmasi> {
                 elevation: 5,
                 color: Colors.white.withOpacity(0.9),
                 child: Container(
-                  height: 300,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 10),
                     child: Column(
                       children: <Widget>[
                         isiColumn("Event", dataHasil[urutan]['nm_event']),
-                        isiColumn("Tanggal", dataHasil[urutan]['tgl']),
+                        isiColumn("Tanggal", DateFormat('dd MMMM yyyy').format(DateTime.parse(dataHasil[urutan]['tgl']))),
                         isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
                         isiColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
                         isiColumn(
@@ -114,13 +114,13 @@ class _SudahKonfirmasiState extends State<SudahKonfirmasi> {
                                       "Detail",
                                       style: TextStyle(color: Colors.black),
                                     ),
-                                    color: Colors.yellow[600],
+                                    color: Colors.blue[400],
                                     onPressed: () {
                                       Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return FormKonfirmasi(
+                                          return DetailPengajuanAdmin(
                                             id: widget.id,
                                             index: urutan,
                                             list: dataHasil,

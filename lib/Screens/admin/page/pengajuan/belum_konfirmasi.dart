@@ -88,7 +88,7 @@ class _BelumKonfirmasiState extends State<BelumKonfirmasi> {
                       ),
                       isiColumn(
                           "No Pengajuan", dataHasil[urutan]['no_pengajuan']),
-                      isiColumn("Tanggal", dataHasil[urutan]['tgl']),
+                      isiColumn("Tanggal", DateFormat('dd MMMM yyyy').format(DateTime.parse(dataHasil[urutan]['tgl']))),
                       isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
                       isiColumn(
                           "Jumlah",

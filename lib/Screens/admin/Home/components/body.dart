@@ -83,7 +83,7 @@ class _BodyState extends State<Body> {
                 ),
                 children: <Widget>[
                   _gridItem(FontAwesomeIcons.fileInvoiceDollar, "Pengajuan",
-                      DataPengajuan()),
+                      DataPengajuan(id: widget.id,)),
                   _gridItem(FontAwesomeIcons.solidCalendarCheck, "Event",
                       DataEvent(id: widget.id)),
                   _gridItem(FontAwesomeIcons.chartLine, "Laba Rugi",

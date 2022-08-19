@@ -1,8 +1,7 @@
 import 'dart:async';
+import 'package:AAccounting/Screens/Login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:AAccounting/widgets/widgets.dart';
-
-import 'components/onboarding_screen.dart';
 
 void main() {
   runApp(SplashScreen());
@@ -29,7 +28,7 @@ class StartState extends State<SplashScreen> {
 
   route() {
     Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (context) => OnboardingScreen()
+        builder: (context) => LoginScreen()
     ));
   }
 

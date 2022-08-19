@@ -4,11 +4,14 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:http/http.dart' as http;
 import 'package:AAccounting/serverdata/api.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TambahRealisasi extends StatefulWidget {
   final String id;
+  final String real;
+  final String jumlah;
   final String nopengajuan;
-  const TambahRealisasi({Key? key, required this.id, required this.nopengajuan})
+  const TambahRealisasi({Key? key, required this.id, required this.nopengajuan, required this.real, required this.jumlah})
       : super(key: key);
 
   @override
@@ -24,11 +27,14 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
   final isiRemark = TextEditingController();
   final isiReferensi = TextEditingController();
 
+  DateTime tgl = DateTime.now();
+
   String tglSave = '';
   String tglChanged = '';
   String tglValidate = '';
 
   void tambah() async {
+    var jumlah = int.parse(isiHarga.text) * int.parse(isiQty.text);
     var url = Uri.parse(myUrl().tambah_realisasi);
     var respon = await http.post(url, body: {
       'no_pengajuan': widget.nopengajuan,
@@ -36,7 +42,7 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
       'tgl': isiTanggal.text,
       'harga': isiHarga.text,
       'qty': isiQty.text,
-      'jumlah_realisasi': isiJumlah.text,
+      'jumlah_realisasi': jumlah.toString(),
       'remark': isiRemark.text,
       'referensi': isiReferensi.text,
     });
@@ -55,6 +61,8 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
           builder: (context) {
             return RealisasiPage(
               id: widget.id,
+              real: widget.real,
+              jumlah: widget.jumlah,
               nopengajuan: widget.nopengajuan,
             );
           },
@@ -110,16 +118,18 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
         child: Column(
           children: [
             tanggal(),
-            boxDaftar('Deskripsi', isiDeskripsi),
-            boxDaftar('Harga', isiHarga),
-            boxDaftar('QTY', isiQty),
-            boxDaftar('Jumlah', isiJumlah),
-            boxDaftar('Remark', isiRemark),
-            boxDaftar('Referensi', isiReferensi),
+            boxDaftar('Deskripsi', isiDeskripsi, TextInputType.name),
+            boxDaftar('Harga', isiHarga, TextInputType.number),
+            boxDaftar('QTY', isiQty, TextInputType.number),
+            boxDaftar('Remark', isiRemark, TextInputType.name),
+            boxDaftar('Referensi', isiReferensi, TextInputType.name),
+            SizedBox(
+              height: 30,
+            ),
             MaterialButton(
-                              color: Colors.green,
+                              color: Colors.blue[400],
                               child: Text(
-                                "Submit",
+                                "Tambah",
                                 style: TextStyle(),
                               ),
                               onPressed: tambah),
@@ -129,11 +139,12 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
     );
   }
 
-  Widget boxDaftar(String txttabel, TextEditingController controller) {
+  Widget boxDaftar(String txttabel, TextEditingController controller, TextInputType input) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: TextField(
         controller: controller,
+        keyboardType: input,
         style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -146,6 +157,8 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
   }
 
   Widget tanggal() {
+    DateFormat formatter = DateFormat('yyyy-MM-dd');
+    String tglBaru = formatter.format(tgl);
     return Padding(
       padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
       child: DateTimePicker(
@@ -156,8 +169,8 @@ class _TambahRealisasiState extends State<TambahRealisasi> {
         style: TextStyle(
           color: Colors.black,
         ),
-        dateMask: 'dd-MM-yyyy',
-        controller: isiTanggal,
+        dateMask: 'yyyy-MM-dd',
+        controller: isiTanggal..text = '${tglBaru}',
         //initialValue: _initialValue,
         firstDate: DateTime(2000),
         lastDate: DateTime(2100),

@@ -95,16 +95,6 @@ class _ProfilScreenState extends State<ProfilScreen> {
                         },
                       ),
                       ProfileMenu(
-                        text: "Pengaturan",
-                        icon: FontAwesomeIcons.slidersH,
-                        press: () {},
-                      ),
-                      ProfileMenu(
-                        text: "Bantuan",
-                        icon: FontAwesomeIcons.questionCircle,
-                        press: () {},
-                      ),
-                      ProfileMenu(
                         text: "Keluar",
                         icon: FontAwesomeIcons.signOutAlt,
                         press: () {

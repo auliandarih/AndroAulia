@@ -11,6 +11,7 @@ class myUrl{
   //EVENT
   final String tampil_event       = Domain().domainku + "event_tampil_semua.php";
   final String tampil_event_aktif = Domain().domainku + "event_tampil_aktif.php";
+  final String tampil_event_edit  = Domain().domainku + "event_tampil_edit.php";
   final String tampil_perevent    = Domain().domainku + "event_tampil_perevent.php";
   final String tambah_event       = Domain().domainku + "event_tambah.php";
   final String update_event       = Domain().domainku + "event_update_status.php";

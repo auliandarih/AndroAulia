@@ -120,9 +120,9 @@ class _RealisasiPageState extends State<RealisasiPage> {
               itemCount: dataHasil == null ? 0 : dataHasil.length,
               itemBuilder: (context, urutan) {
                 return Container(
-                  height: 30,
-                  child: GestureDetector(
-                    onTap: () {
+                  height: 40,
+                  child: MaterialButton(
+                    onPressed: () {
                       // Navigator.push(
                       //   context,
                       //   MaterialPageRoute(
@@ -181,10 +181,38 @@ class _RealisasiPageState extends State<RealisasiPage> {
             ),
           ),
         ),
+        ListTile(
+          contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+          title: Row(
+            children: <Widget>[
+              Expanded(
+                child: Container(
+                  child: Center(
+                    child: Text(
+                      'Total Realisasi',
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 180,
+                // color: Colors.yellow[400],
+                child: Center(
+                    child: Text(
+                  NumberFormat.currency(
+                          locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
+                      .format(int.parse(widget.real)),
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                )),
+              ),
+            ],
+          ),
+        ),
         (int.parse(widget.real) < int.parse(widget.jumlah) 
         ? Container(
           // color: Colors.blue,
-          height: 100,
+          height: 80,
           padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
           alignment: Alignment.topLeft,
           child: Row(

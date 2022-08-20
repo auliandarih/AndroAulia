@@ -102,8 +102,7 @@ class _DataPengajuanState extends State<DataPengajuan> {
                             builder: (context) {
                               return DetailPengajuanAdmin(
                                 id: widget.id,
-                                index: urutan,
-                                list: dataHasil,
+                                nope: dataHasil[urutan]['no_pengajuan'],
                               );
                             },
                           ),

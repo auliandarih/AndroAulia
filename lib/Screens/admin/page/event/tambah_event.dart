@@ -104,147 +104,69 @@ class _TambahEventState extends State<TambahEvent> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        BackgroundOnboard(),
-        Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            title: Text(
-              'Tambah Event',
-              style: TextStyle(color: Colors.white),
-            ),
-            centerTitle: true,
-          ),
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-              child: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
-                ),
-                TextInputField(
-                  textEditingController: isiNoEvent,
-                  icon: FontAwesomeIcons.envelope,
-                  hint: 'Nomor Event',
-                  inputType: TextInputType.text,
-                  inputAction: TextInputAction.next,
-                ),
-                TextInputField(
-                  textEditingController: isiNamaEvent,
-                  icon: FontAwesomeIcons.userAlt,
-                  hint: 'Nama Event',
-                  inputType: TextInputType.name,
-                  inputAction: TextInputAction.next,
-                ),
-                TextInputField(
-                  textEditingController: isiClient,
-                  icon: FontAwesomeIcons.userAlt,
-                  hint: 'Client',
-                  inputType: TextInputType.text,
-                  inputAction: TextInputAction.next,
-                ),
-                TextInputField(
-                  textEditingController: isiMotherEO,
-                  icon: FontAwesomeIcons.userAlt,
-                  hint: 'Mother EO',
-                  inputType: TextInputType.name,
-                  inputAction: TextInputAction.next,
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 50, 10),
-                  child: DateTimePicker(
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.event, color: Colors.white),
-                        labelText: 'Tanggal Mulai',
-                        labelStyle: TextStyle(color: Colors.white)),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    dateMask: 'yyyy-MM-dd',
-                    controller: isiTglMulai,
-                    //initialValue: _initialValue,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                    onChanged: (val) => setState(() => tglMulaiChanged = val),
-                    validator: (val) {
-                      setState(() => tglMulaiValidate = val ?? '');
-                      return null;
-                    },
-                    onSaved: (val) => setState(() => tglMulaiSave = val ?? ''),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 50, 10),
-                  child: DateTimePicker(
-                    decoration: InputDecoration(
-                        icon: Icon(Icons.event, color: Colors.white),
-                        labelText: 'Tanggal Akhir',
-                        labelStyle: TextStyle(color: Colors.white)),
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                    dateMask: 'yyyy-MM-dd',
-                    controller: isiTglAkhir,
-                    //initialValue: _initialValue,
-                    firstDate: DateTime(2000),
-                    lastDate: DateTime(2100),
-                    onChanged: (val) => setState(() => tglAkhirChanged = val),
-                    validator: (val) {
-                      setState(() => tglAkhirValidate = val ?? '');
-                      return null;
-                    },
-                    onSaved: (val) => setState(() => tglAkhirSave = val ?? ''),
-                  ),
-                ),
-                TextInputField(
-                  textEditingController: isiBudget,
-                  icon: FontAwesomeIcons.solidBuilding,
-                  hint: 'Budget',
-                  inputType: TextInputType.number,
-                  inputAction: TextInputAction.next,
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                RoundedButton(
-                  buttonName: 'Submit',
-                  press: () {
-                    if (isiNoEvent.text.isEmpty) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+      child: Scaffold(
+        appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.yellow[800],
+        title: Text(
+          "Tambah Event",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ),
+        body: SingleChildScrollView(
+            child: Center(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              boxDaftar("Nomor Event", isiNoEvent),
+              boxDaftar("Nama Event", isiNamaEvent),
+              boxDaftar("Client", isiClient),
+              boxDaftar("Mother EO", isiMotherEO),
+              tglMulai(),
+              tglAkhir(),
+              boxDaftar("Budget", isiBudget),
+              RoundedButton(
+                buttonName: 'Submit',
+                press: () {
+                  if (isiNoEvent.text.isEmpty) {
+                    //Pesan Jangan Kosong
+                    showAlertDialog(
+                        context, "Informasi", "Nomor Event Belum Di!");
+                  } else {
+                    //Cek Password jangan sampe kosong
+                    if (isiBudget.text.isEmpty) {
                       //Pesan Jangan Kosong
                       showAlertDialog(
-                          context, "Informasi", "Nomor Event Belum Di!");
+                          context, "Informasi", "Harap Isi Budgetnya !");
                     } else {
-                      //Cek Password jangan sampe kosong
-                      if (isiBudget.text.isEmpty) {
-                        //Pesan Jangan Kosong
-                        showAlertDialog(
-                            context, "Informasi", "Harap Isi Budgetnya !");
-                      } else {
-                        // Cek API INTERNET
-                        daftar(context);
-                      }
+                      // Cek API INTERNET
+                      daftar(context);
                     }
-                  },
-                ),
-              ],
-            ),
-          )),
-        )
-      ],
+                  }
+                },
+              ),
+            ],
+          ),
+        )),
+      ),
     );
   }
 
   Widget boxDaftar(String txttabel, TextEditingController controller) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
       child: TextField(
         controller: controller,
+        style: TextStyle(color: Colors.black),
         decoration: InputDecoration(
             contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            label: Text(txttabel.toUpperCase()),
+            label: Text(txttabel.toUpperCase(),
+                style: TextStyle(color: Colors.black)),
             border: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.black))),
       ),
@@ -273,6 +195,32 @@ class _TambahEventState extends State<TambahEvent> {
           return null;
         },
         onSaved: (val) => setState(() => tglMulaiSave = val ?? ''),
+      ),
+    );
+  }
+
+  Widget tglAkhir() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 0, 10),
+      child: DateTimePicker(
+        decoration: InputDecoration(
+            icon: Icon(Icons.event, color: Colors.black),
+            labelText: 'Tanggal'.toUpperCase(),
+            labelStyle: TextStyle(color: Colors.black)),
+        style: TextStyle(
+          color: Colors.black,
+        ),
+        dateMask: 'yyyy-MM-dd',
+        controller: isiTglAkhir,
+        //initialValue: _initialValue,
+        firstDate: DateTime(2000),
+        lastDate: DateTime(2100),
+        onChanged: (val) => setState(() => tglAkhirChanged = val),
+        validator: (val) {
+          setState(() => tglAkhirValidate = val ?? '');
+          return null;
+        },
+        onSaved: (val) => setState(() => tglAkhirSave = val ?? ''),
       ),
     );
   }

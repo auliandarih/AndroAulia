@@ -108,9 +108,8 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
             children: [
               RaisedButton(
                 child: Text("Batal"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () =>
+                  Navigator.pop(context),
               ),
               SizedBox(
                 width: 10,
@@ -170,9 +169,8 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
             children: [
               RaisedButton(
                 child: Text("Batal"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
+                onPressed: () =>
+                  Navigator.of(context).pop(),
               ),
               SizedBox(
                 width: 10,
@@ -212,9 +210,8 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
     // set up the button
     Widget okButton = FlatButton(
       child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop(); // dismiss dialog
-      },
+      onPressed: () =>
+        Navigator.of(context).pop(),
     );
 
     // set up the AlertDialog
@@ -248,13 +245,14 @@ class _FormKonfirmasiState extends State<FormKonfirmasi> {
         ),
         actions: <Widget>[
           IconButton(
-              onPressed: () {
-                hapus(context);
-              },
-              icon: Icon(
-                FontAwesomeIcons.trashAlt,
-                size: 18,
-              ))
+            onPressed: () {
+              hapus(context);
+            },
+            icon: Icon(
+              FontAwesomeIcons.trashAlt,
+              size: 18,
+            ),
+          ),
         ],
       ),
       body: Column(

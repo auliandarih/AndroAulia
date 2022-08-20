@@ -11,8 +11,7 @@ import '../../../../pallete.dart';
 class DetailPengajuan extends StatefulWidget {
   final String id;
   final String nope;
-  const DetailPengajuan(
-      {Key? key, required this.nope, required this.id})
+  const DetailPengajuan({Key? key, required this.nope, required this.id})
       : super(key: key);
 
   @override
@@ -30,51 +29,40 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
     return data;
   }
 
-  Future tampilTotal() async {
-    var url = Uri.parse(myUrl().total_realisasi);
-    var respon = await http.post(url, body: {'no_pengajuan': widget.nope});
-
-    var hasil = jsonDecode(respon.body);
-
-    final String total = hasil;
-
-    return hasil;
-  }
-
   Future<Null> refreshData() async {
     await Future.delayed(Duration(seconds: 2));
     setState(() {
       ambildata();
-      tampilTotal();
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          centerTitle: true,
-          backgroundColor: Colors.yellow[800],
-          title: Text(
-            "Detail Pengajuan",
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        centerTitle: true,
+        backgroundColor: Colors.yellow[800],
+        title: Text(
+          "Detail Pengajuan",
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        ),
+      ),
+      body: Center(
+        child: RefreshIndicator(
+          onRefresh: refreshData,
+          child: FutureBuilder<List>(
+            future: ambildata(),
+            builder: (context, tempData) {
+              if (tempData.hasError) print(tempData.error);
+              return tempData.hasData == true
+                  ? designTampilan(tempData.requireData)
+                  : CircularProgressIndicator();
+            },
           ),
         ),
-        body: Center(
-          child: RefreshIndicator(
-            onRefresh: refreshData,
-            child: FutureBuilder<List>(
-              future: ambildata(),
-              builder: (context, tempData) {
-                if (tempData.hasError) print(tempData.error);
-                return tempData.hasData == true
-                    ? designTampilan(tempData.requireData)
-                    : CircularProgressIndicator();
-              },
-            ),
-          ),
-        ));
+      ),
+    );
   }
 
   Widget designTampilan(data) {
@@ -133,11 +121,10 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
                           color: (data[0]['confirmed'] == 'Belum Dikonfirmasi'
                               ? Colors.yellow[900]
                               : (data[0]['confirmed'] == 'Sudah Dikonfirmasi'
-                              ? Colors.green
-                              : Colors.red)),
+                                  ? Colors.green
+                                  : Colors.red)),
                           height: 1.5,
-                          fontWeight: FontWeight.bold
-                        ),
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -146,9 +133,11 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
           ),
           if (data[0]['confirmed'] == "Sudah Dikonfirmasi")
             Expanded(
-              child: namacolumn("Total Realisasi", NumberFormat.currency(
-                      locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
-                  .format(int.parse(data[0]['total']))),
+              child: namacolumn(
+                  "Total Realisasi",
+                  NumberFormat.currency(
+                          locale: 'id', symbol: 'Rp. ', decimalDigits: 0)
+                      .format(int.parse(data[0]['total']))),
             ),
           Expanded(
             child: Padding(
@@ -210,35 +199,6 @@ class _DetailPengajuanState extends State<DetailPengajuan> {
           ),
         ],
       ),
-    );
-  }
-
-  Widget tabelPengajuan() {
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-              width: 150,
-              height: 30,
-              alignment: Alignment.center,
-              child: Text("Harga"),
-            ),
-            Container(
-              width: 80,
-              height: 30,
-              alignment: Alignment.center,
-              child: Text("QTY"),
-            ),
-            Container(
-              width: 180,
-              height: 30,
-              alignment: Alignment.center,
-              child: Text("Jumlah"),
-            ),
-          ],
-        )
-      ],
     );
   }
 

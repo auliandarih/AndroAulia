@@ -10,10 +10,7 @@ import 'package:intl/intl.dart';
 
 class Ditolak extends StatefulWidget {
   final String id;
-  const Ditolak({
-    Key? key,
-    required this.id
-  }) : super(key: key);
+  const Ditolak({Key? key, required this.id}) : super(key: key);
 
   @override
   State<Ditolak> createState() => _DitolakState();
@@ -87,7 +84,10 @@ class _DitolakState extends State<Ditolak> {
                     child: Column(
                       children: <Widget>[
                         isiColumn("Event", dataHasil[urutan]['nm_event']),
-                        isiColumn("Tanggal", DateFormat('dd MMMM yyyy').format(DateTime.parse(dataHasil[urutan]['tgl']))),
+                        isiColumn(
+                            "Tanggal",
+                            DateFormat('dd MMMM yyyy').format(
+                                DateTime.parse(dataHasil[urutan]['tgl']))),
                         isiColumn("Pengaju Dana", dataHasil[urutan]['nama']),
                         isiColumn("Deskripsi", dataHasil[urutan]['deskripsi']),
                         isiColumn(
@@ -117,17 +117,17 @@ class _DitolakState extends State<Ditolak> {
                                     color: Colors.blue[400],
                                     onPressed: () {
                                       Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return DetailPengajuanAdmin(
-                                            id: widget.id,
-                                            index: urutan,
-                                            list: dataHasil,
-                                          );
-                                        },
-                                      ),
-                                    );
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) {
+                                            return DetailPengajuanAdmin(
+                                              id: widget.id,
+                                              nope: dataHasil[urutan]
+                                                  ['no_pengajuan'],
+                                            );
+                                          },
+                                        ),
+                                      );
                                     },
                                   ),
                                 ),
